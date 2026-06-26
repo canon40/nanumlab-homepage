@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" fill="none">
+  <rect width="400" height="180" fill="#0a1929"/>
+  <ellipse cx="200" cy="100" rx="100" ry="36" fill="#102a43" stroke="#334e68"/>
+  <ellipse cx="200" cy="88" rx="72" ry="28" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="200" y="92" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="system-ui,sans-serif" font-weight="700">PostgreSQL</text>
+  <rect x="72" y="40" width="64" height="40" rx="6" fill="#102a43" stroke="#486581"/><text x="104" y="64" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">MySQL</text>
+  <rect x="264" y="40" width="64" height="40" rx="6" fill="#102a43" stroke="#486581"/><text x="296" y="64" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Neon</text>
+  <circle cx="200" cy="140" r="4" fill="#34d399"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
+</svg>

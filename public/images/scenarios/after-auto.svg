@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140" fill="none">
+  <rect width="400" height="140" fill="#061510"/>
+  <rect x="56" y="28" width="288" height="84" rx="10" fill="#102a43" stroke="#334e68"/>
+  <polyline points="80,88 120,68 160,78 200,52 240,62 280,44 320,56" stroke="#34d399" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="320" cy="56" r="5" fill="#34d399"/>
+  <rect x="80" y="40" width="72" height="20" rx="4" fill="#064e3b"/><text x="116" y="54" text-anchor="middle" fill="#34d399" font-size="8" font-family="system-ui,sans-serif">Auto</text>
+  <rect x="248" y="40" width="72" height="20" rx="4" fill="#1e3a5f" stroke="#3b82f6"/><text x="284" y="54" text-anchor="middle" fill="#60a5fa" font-size="8" font-family="system-ui,sans-serif">AI</text>
+  <circle cx="200" cy="108" r="14" fill="#064e3b" stroke="#34d399"/><path d="M194 108 L198 112 L206 102" stroke="#34d399" stroke-width="2" fill="none"/>
+  <text x="200" y="132" text-anchor="middle" fill="#6ee7b7" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Integrated &amp; Fast</text>
+</svg>

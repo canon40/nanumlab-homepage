@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#0a1929"/>
+  <circle cx="100" cy="150" r="70" fill="#3b82f6" opacity="0.1"><animate attributeName="r" values="65;75;65" dur="3s" repeatCount="indefinite"/></circle>
+  <rect x="48" y="70" width="104" height="160" rx="52" fill="#102a43" stroke="#334e68"/>
+  <circle cx="100" cy="118" r="22" fill="#1e3a5f"/>
+  <path d="M78 148 Q100 132 122 148" stroke="#94a3b8" stroke-width="2.5" fill="none"/>
+  <path d="M88 90 Q100 70 112 90" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/></path>
+  <rect x="176" y="56" width="200" height="188" rx="12" fill="#102a43" stroke="#334e68"/>
+  <text x="196" y="84" fill="#60a5fa" font-size="10" font-family="system-ui,sans-serif" font-weight="700">AI Call Center</text>
+  <rect x="196" y="96" width="160" height="36" rx="8" fill="#1e3a5f"/>
+  <text x="208" y="118" fill="#e2e8f0" font-size="8" font-family="system-ui,sans-serif">STT: complaint text...</text>
+  <rect x="196" y="142" width="160" height="48" rx="8" fill="#243b53"/>
+  <text x="208" y="162" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Summary: facility booking</text>
+  <text x="208" y="178" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Sentiment: neutral</text>
+  <rect x="196" y="200" width="50" height="20" rx="4" fill="#422006"/><text x="221" y="214" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="system-ui,sans-serif">Type A</text>
+  <rect x="254" y="200" width="50" height="20" rx="4" fill="#064e3b"/><text x="279" y="214" text-anchor="middle" fill="#34d399" font-size="7" font-family="system-ui,sans-serif">Done</text>
+  <rect x="196" y="228" width="160" height="8" rx="4" fill="#1e3a5f"/>
+  <rect x="196" y="228" width="110" height="8" rx="4" fill="#3b82f6"><animate attributeName="width" values="40;160;40" dur="4s" repeatCount="indefinite"/></rect>
+</svg>

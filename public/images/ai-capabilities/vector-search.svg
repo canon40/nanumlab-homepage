@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" fill="none">
+  <rect width="400" height="180" fill="#0a1929"/>
+  <rect x="24" y="24" width="352" height="132" rx="12" fill="#102a43" stroke="#334e68"/>
+  <rect x="40" y="40" width="200" height="28" rx="8" fill="#1e3a5f" stroke="#3b82f6"/>
+  <circle cx="56" cy="54" r="6" fill="none" stroke="#60a5fa" stroke-width="1.5"/><line x1="62" y1="54" x2="68" y2="54" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="76" y="58" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Search documents...</text>
+  <text x="40" y="88" fill="#60a5fa" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Embedding Space</text>
+  <circle cx="100" cy="118" r="5" fill="#3b82f6"/><circle cx="160" cy="108" r="5" fill="#22d3ee"/><circle cx="200" cy="124" r="5" fill="#34d399"/>
+  <circle cx="260" cy="100" r="5" fill="#a78bfa"/><circle cx="300" cy="116" r="6" fill="#f59e0b" stroke="#fff" stroke-width="1"/>
+  <line x1="100" y1="118" x2="160" y2="108" stroke="#334e68"/><line x1="160" y1="108" x2="200" y2="124" stroke="#334e68"/>
+  <line x1="200" y1="124" x2="260" y2="100" stroke="#334e68"/><line x1="260" y1="100" x2="300" y2="116" stroke="#3b82f6" stroke-width="1.2"/>
+  <rect x="280" y="40" width="80" height="44" rx="8" fill="#1e3a5f" stroke="#34d399"/>
+  <text x="292" y="58" fill="#34d399" font-size="8" font-family="system-ui,sans-serif" font-weight="700">Top Match</text>
+  <text x="292" y="72" fill="#e2e8f0" font-size="7" font-family="system-ui,sans-serif">Score 0.94</text>
+</svg>

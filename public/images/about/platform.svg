@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" fill="#0a1929"/>
+  <rect x="24" y="24" width="160" height="152" rx="10" fill="#102a43" stroke="#334e68"/>
+  <rect x="40" y="44" width="128" height="12" rx="4" fill="#486581"/>
+  <rect x="40" y="68" width="128" height="80" rx="8" fill="#1e3a5f"/>
+  <rect x="56" y="84" width="96" height="48" rx="6" fill="#0a1929" stroke="#3b82f6"/>
+  <text x="104" y="112" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="system-ui,sans-serif">Citizen Portal</text>
+  <rect x="200" y="32" width="176" height="144" rx="10" fill="#102a43" stroke="#334e68"/>
+  <text x="220" y="58" fill="#94a3b8" font-size="9" font-family="system-ui,sans-serif">Admin Dashboard</text>
+  <rect x="220" y="72" width="144" height="24" rx="4" fill="#243b53"/>
+  <rect x="220" y="104" width="100" height="24" rx="4" fill="#1e3a5f"/>
+  <rect x="220" y="136" width="120" height="24" rx="4" fill="#1e3a5f"/>
+  <circle cx="340" cy="148" r="6" fill="#34d399"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
+</svg>

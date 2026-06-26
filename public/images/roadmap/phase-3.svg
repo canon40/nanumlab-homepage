@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" fill="none">
+  <rect width="400" height="160" fill="#0a1929"/>
+  <circle cx="120" cy="72" r="36" fill="#102a43" stroke="#334e68"/>
+  <text x="120" y="76" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">STT</text>
+  <circle cx="200" cy="72" r="36" fill="#102a43" stroke="#3b82f6"/>
+  <text x="200" y="76" text-anchor="middle" fill="#60a5fa" font-size="8" font-family="system-ui,sans-serif">Satellite</text>
+  <circle cx="280" cy="72" r="36" fill="#102a43" stroke="#22d3ee"/>
+  <text x="280" y="76" text-anchor="middle" fill="#22d3ee" font-size="8" font-family="system-ui,sans-serif">Spatial</text>
+  <path d="M156 72 L164 72 M236 72 L244 72" stroke="#486581" stroke-width="2"/>
+  <text x="200" y="130" text-anchor="middle" fill="#64748b" font-size="8" font-family="system-ui,sans-serif">Advanced administration</text>
+</svg>

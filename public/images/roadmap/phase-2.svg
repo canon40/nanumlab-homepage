@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" fill="none">
+  <rect width="400" height="160" fill="#0a1929"/>
+  <circle cx="200" cy="72" r="40" fill="#3b82f6" opacity="0.2"><animate attributeName="r" values="36;44;36" dur="3s" repeatCount="indefinite"/></circle>
+  <rect x="120" y="40" width="160" height="64" rx="12" fill="#102a43" stroke="#3b82f6"/>
+  <text x="200" y="68" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="system-ui,sans-serif" font-weight="700">AI Chatbot</text>
+  <text x="200" y="88" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">NL Recommendation</text>
+  <circle cx="80" cy="120" r="6" fill="#3b82f6"/><circle cx="200" cy="120" r="6" fill="#22d3ee"/><circle cx="320" cy="120" r="6" fill="#60a5fa"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" fill="#0a1929"/>
+  <rect x="32" y="40" width="336" height="120" rx="12" fill="#102a43" stroke="#334e68"/>
+  <rect x="48" y="56" width="80" height="88" rx="8" fill="#1e3a5f" stroke="#f59e0b"/>
+  <text x="88" y="106" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="system-ui,sans-serif">Manual</text>
+  <path d="M148 100 L172 100" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#3b82f6"/></marker></defs>
+  <rect x="184" y="56" width="80" height="88" rx="8" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="224" y="106" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="system-ui,sans-serif">AI Auto</text>
+  <rect x="284" y="72" width="68" height="56" rx="8" fill="#064e3b"/>
+  <text x="318" y="104" text-anchor="middle" fill="#34d399" font-size="8" font-family="system-ui,sans-serif" font-weight="700">Done</text>
+  <rect x="48" y="148" width="304" height="8" rx="4" fill="#1e3a5f"/>
+  <rect x="48" y="148" width="240" height="8" rx="4" fill="#3b82f6"><animate attributeName="width" values="80;304;80" dur="4s" repeatCount="indefinite"/></rect>
+</svg>

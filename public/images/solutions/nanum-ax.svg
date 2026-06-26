@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#0a1929"/>
+  <rect x="40" y="32" width="320" height="236" rx="12" fill="#102a43" stroke="#334e68"/>
+  <rect x="56" y="48" width="120" height="10" rx="3" fill="#486581"/>
+  <text x="116" y="56" text-anchor="middle" fill="#9fb3c8" font-size="8" font-family="sans-serif">Nanum AX</text>
+  <rect x="56" y="72" width="88" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="100" y="105" text-anchor="middle" fill="#627d98" font-size="8" font-family="sans-serif">LLM</text>
+  <rect x="156" y="72" width="88" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="200" y="105" text-anchor="middle" fill="#627d98" font-size="8" font-family="sans-serif">Vector DB</text>
+  <rect x="256" y="72" width="88" height="60" rx="6" fill="#1e3a5f"/>
+  <text x="300" y="105" text-anchor="middle" fill="#627d98" font-size="8" font-family="sans-serif">Gateway</text>
+  <rect x="56" y="148" width="288" height="100" rx="6" fill="#243b53"/>
+  <text x="200" y="185" text-anchor="middle" fill="#bcccdc" font-size="9" font-family="sans-serif">On-Premise AI Framework</text>
+  <rect x="56" y="200" width="80" height="24" rx="4" fill="#1e3a5f"/>
+  <rect x="148" y="200" width="80" height="24" rx="4" fill="#1e3a5f"/>
+  <rect x="240" y="200" width="104" height="24" rx="4" fill="#1e3a5f"/>
+</svg>

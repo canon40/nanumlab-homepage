@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#0a1929"/>
+  <path d="M72 220 L120 110 L200 72 L280 110 L328 220 Z" fill="#102a43" stroke="#334e68" stroke-width="1.5"/>
+  <path d="M120 220 L160 150 L200 128 L240 150 L280 220 Z" fill="#1e3a5f" stroke="#486581"/>
+  <rect x="168" y="48" width="64" height="52" rx="6" fill="#243b53" stroke="#3b82f6"/>
+  <text x="200" y="80" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="system-ui,sans-serif" font-weight="700">3D</text>
+  <circle cx="200" cy="168" r="18" fill="#3b82f6" opacity="0.5"><animate attributeName="r" values="16;22;16" dur="3s" repeatCount="indefinite"/></circle>
+  <rect x="32" y="36" width="108" height="72" rx="8" fill="#102a43" stroke="#334e68"/>
+  <text x="86" y="64" text-anchor="middle" fill="#bcccdc" font-size="9" font-family="system-ui,sans-serif" font-weight="700">XR Tour</text>
+  <rect x="44" y="76" width="84" height="20" rx="4" fill="#1e3a5f"/>
+  <rect x="260" y="36" width="108" height="72" rx="8" fill="#102a43" stroke="#334e68"/>
+  <text x="314" y="64" text-anchor="middle" fill="#bcccdc" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Digital Twin</text>
+  <rect x="272" y="76" width="84" height="20" rx="4" fill="#1e3a5f"/>
+  <text x="200" y="268" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Matterport scan / museum / tourism</text>
+</svg>

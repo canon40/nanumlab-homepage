@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="400" y2="300"><stop stop-color="#0a1929"/><stop offset="1" stop-color="#102a43"/></linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3b82f6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="320" cy="60" r="80" fill="#3b82f6" opacity="0.12"><animate attributeName="r" values="75;85;75" dur="4s" repeatCount="indefinite"/></circle>
+  <rect x="28" y="36" width="148" height="228" rx="18" fill="#102a43" stroke="#334e68"/>
+  <rect x="44" y="56" width="116" height="10" rx="5" fill="#486581"/>
+  <rect x="44" y="78" width="116" height="72" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="58" y="92" width="88" height="44" rx="6" fill="#0a1929" stroke="#60a5fa"/>
+  <text x="102" y="120" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="system-ui,sans-serif" font-weight="700">QR TICKET</text>
+  <circle cx="102" cy="148" r="3" fill="#34d399"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+  <rect x="44" y="162" width="116" height="36" rx="8" fill="#243b53"/>
+  <text x="102" y="184" text-anchor="middle" fill="#34d399" font-size="9" font-family="system-ui,sans-serif">MyData OK</text>
+  <rect x="44" y="208" width="116" height="40" rx="8" fill="url(#glow)" opacity="0.9"/>
+  <text x="102" y="232" text-anchor="middle" fill="white" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Auto Discount</text>
+  <rect x="196" y="44" width="176" height="108" rx="10" fill="#102a43" stroke="#334e68"/>
+  <text x="212" y="68" fill="#9fb3c8" font-size="9" font-family="system-ui,sans-serif">Settlement Dashboard</text>
+  <polyline points="212,200 248,178 284,188 320,168 356,180" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <animate attributeName="stroke-dashoffset" values="200;0;200" dur="3s" repeatCount="indefinite"/>
+  </polyline>
+  <circle cx="248" cy="178" r="5" fill="#60a5fa"/><circle cx="284" cy="188" r="5" fill="#22d3ee"/><circle cx="320" cy="168" r="5" fill="#60a5fa"/>
+  <rect x="196" y="168" width="176" height="96" rx="10" fill="#102a43" stroke="#334e68"/>
+</svg>

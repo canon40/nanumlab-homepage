@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" fill="none">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#3b82f6" stop-opacity="0"/><stop offset="0.5" stop-color="#22d3ee" stop-opacity="0.7"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></linearGradient></defs>
+  <rect width="400" height="180" fill="#0a1929"/>
+  <rect x="28" y="28" width="110" height="124" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="42" y="44" width="80" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="42" y="80" width="82" height="40" rx="4" fill="#1e3a5f"/>
+  <text x="83" y="104" text-anchor="middle" fill="#64748b" font-size="8" font-family="system-ui,sans-serif">RECEIPT</text>
+  <rect x="28" y="28" width="110" height="30" fill="url(#s)"><animate attributeName="y" values="28;122;28" dur="2.2s" repeatCount="indefinite"/></rect>
+  <path d="M150 90 L175 90" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 3"><animate attributeName="stroke-dashoffset" values="0;-14" dur="1s" repeatCount="indefinite"/></path>
+  <rect x="180" y="36" width="192" height="108" rx="12" fill="#102a43" stroke="#334e68"/>
+  <text x="196" y="58" fill="#60a5fa" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Vision OCR</text>
+  <rect x="196" y="68" width="160" height="22" rx="5" fill="#1e3a5f" stroke="#3b82f6"/>
+  <text x="208" y="83" fill="#e2e8f0" font-size="8" font-family="system-ui,sans-serif">Store: Mart A</text>
+  <rect x="196" y="96" width="120" height="22" rx="5" fill="#1e3a5f" stroke="#22d3ee"/>
+  <text x="208" y="111" fill="#e2e8f0" font-size="8" font-family="system-ui,sans-serif">Amount: 45,000</text>
+  <rect x="196" y="124" width="80" height="18" rx="4" fill="#064e3b"/>
+  <text x="236" y="137" text-anchor="middle" fill="#34d399" font-size="7" font-family="system-ui,sans-serif" font-weight="700">Verified</text>
+</svg>

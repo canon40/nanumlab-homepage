@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <radialGradient id="earth" cx="50%" cy="45%" r="50%"><stop stop-color="#1e3a5f"/><stop offset="1" stop-color="#0a1929"/></radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="#0a1929"/>
+  <circle cx="180" cy="140" r="72" fill="url(#earth)" stroke="#334e68"/>
+  <path d="M120 140 Q180 80 240 140 Q180 110 120 140" fill="#243b53"/>
+  <path d="M140 160 Q180 200 220 160" fill="#1e3a5f"/>
+  <circle cx="160" cy="120" r="5" fill="#3b82f6"><animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/></circle>
+  <circle cx="200" cy="100" r="5" fill="#22d3ee"><animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></circle>
+  <circle cx="220" cy="150" r="5" fill="#60a5fa"><animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/></circle>
+  <rect x="268" y="48" width="108" height="88" rx="8" fill="#102a43" stroke="#334e68"/>
+  <text x="322" y="72" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="system-ui,sans-serif" font-weight="700">Satellite AI</text>
+  <rect x="280" y="84" width="84" height="8" rx="2" fill="#1e3a5f"/>
+  <rect x="280" y="98" width="64" height="8" rx="2" fill="#243b53"/>
+  <rect x="280" y="112" width="72" height="8" rx="2" fill="#243b53"/>
+  <rect x="24" y="220" width="352" height="56" rx="8" fill="#102a43" stroke="#334e68"/>
+  <polyline points="40,252 120,236 200,248 280,228 360,244" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <text x="200" y="268" text-anchor="middle" fill="#94a3b8" font-size="8" font-family="system-ui,sans-serif">Land change detection / policy monitoring</text>
+</svg>
