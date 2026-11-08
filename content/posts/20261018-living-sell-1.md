@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 처음 코팅제를 쓸 때 실패는 대부분 제품보다 준비·양·건조 세 곳에서 생깁니다. 이 세 가지만 지키면 \"발랐는데 얼룩만 남았다\"는 경험을 줄일 수 있습니다. 코팅은 표면에 붙는 막입니다. 하얀 물때나 비누"
 image: "/blog-images/20261018-living-sell-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224445359256"
+links: {"naver": "https://blog.naver.com/hymini1/224445359256"}
 ---
 # 샤워부스 유리 코팅제, 처음 쓰는 사람이 실패하는 지점 3가지
 

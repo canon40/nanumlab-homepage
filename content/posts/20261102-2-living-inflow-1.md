@@ -5,6 +5,7 @@ category: "living"
 description: "결론부터 말하면, 주방 배수구 트랩은 모양에 따라 냄새를 막는 방식 자체가 다릅니다. P자로 꺾인 관과 종 모양으로 덮인 통, 자바라 모양 주름관은 물이 고이는 구조가 서로 다릅니다. 같은 세기로 청소해도 냄새 차단"
 image: "/blog-images/20261102-2-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224461763339"
+links: {"naver": "https://blog.naver.com/hymini1/224461763339"}
 ---
 # 주방 배수구 트랩 모양 다르면 냄새 막는 효과도 다를까
 

@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 계절이 바뀔 때는 기온 변화로 인해 바이크 타이어 내부 압력이 자연스럽게 달라지므로 주기적인 점검이 안전 운행에 도움을 줄 수 있습니다. 라이딩 전 냉간 상태에서 공기압 게이지를 사용해 차량 매뉴얼 권장 "
 image: "/blog-images/20261018-bike-inflow-4.jpg"
 canonical: "https://blog.naver.com/selfcoat/224452011901"
+links: {"naver": "https://blog.naver.com/selfcoat/224452011901", "tistory": "https://hymini1.tistory.com/499"}
 ---
 # 바이크 타이어 공기압, 계절 바뀔 때 확인하는 법
 

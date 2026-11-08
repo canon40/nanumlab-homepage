@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 샤워 커튼 아랫단의 분홍·주황색 얼룩은 물과 비누 찌꺼기가 오래 머무는 자리 에 미생물이 자라며 생기는 경우가 많습니다. 커튼을 펼쳐 말리는 습관만 바꿔도 생기는 속도가 달라집니다. 샤워 후 물은 아래로 "
 image: "/blog-images/20261018-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224445358054"
+links: {"naver": "https://blog.naver.com/hymini1/224445358054", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_21.html"}
 ---
 # 샤워 커튼 아랫단이 분홍색으로 변하는 이유
 

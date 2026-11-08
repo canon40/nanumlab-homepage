@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 겨울 동안 바이크를 오래 세워 둘 계획이라면 연료 상태, 연료 계통, 보관 자리 를 미리 정리해 두는 것이 좋습니다. 구체적인 방법은 차종마다 다르니 꼭 차량 매뉴얼을 기준으로 삼으세요. 오래 세워 둔 바"
 image: "/blog-images/20261019-bike-inflow-1.jpg"
 canonical: "https://blog.naver.com/selfcoat/224446217841"
+links: {"naver": "https://blog.naver.com/selfcoat/224446217841", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 겨울 장기 보관 전 바이크 연료 관리 순서
 

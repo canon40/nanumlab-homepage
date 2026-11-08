@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 욕실 실리콘에 생긴 검은 점은 얼룩이 표면에만 앉은 것인지 실리콘 안쪽까지 자리 잡은 것인지로 판단이 갈립니다. 표면이면 세정과 건조 관리로 닦아 내는 쪽이 낫고, 안쪽까지 번졌거나 들뜸·갈라짐이 같이 보"
 image: "/blog-images/20261019-living-inflow-1.png"
 canonical: "https://blog.naver.com/hymini1/224452961909"
+links: {"naver": "https://blog.naver.com/hymini1/224452961909", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_25.html", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 욕실 실리콘 검은 점, 닦을지 다시 쏠지 판단하는 기준
 

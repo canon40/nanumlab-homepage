@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 욕실 환기가 잘 안 될 때 가장 먼저 손댈 수 있는 건 환기팬이나 가전이 아니라 수건걸이 위치입니다. 젖은 수건이 공기 흐름을 막는 자리에 걸려 있으면 습기가 빠져나가는 길이 좁아지기 때문입니다. 걸이를 "
 image: "/blog-images/20261019-living-inflow-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224453866655"
+links: {"naver": "https://blog.naver.com/hymini1/224453866655", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 욕실 환기 부족할 때 수건걸이 위치 바꿔 보는 방법
 

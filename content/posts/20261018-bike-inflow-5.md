@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 바이크 김서림 방지는 헬멧 실드만의 문제가 아니라 계기판 커버처럼 시야에 들어오는 투명 표면을 함께 관리해야 합니다. 김이 서리는 원리는 차가운 표면에 따뜻한 수증기가 닿아 물방울로 맺히는 것이라, 온도 "
 image: "/blog-images/20261018-bike-inflow-5.jpg"
 canonical: "https://blog.naver.com/selfcoat/224452952033"
+links: {"naver": "https://blog.naver.com/selfcoat/224452952033"}
 ---
 # 바이크 김서림 방지, 계기판 커버부터 점검하세요
 

@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 칫솔꽂이 바닥의 물 고임은 칫솔에서 떨어진 물이 빠질 곳이 없을 때 생깁니다. 물이 빠지는 구조로 바꾸고 주 1회 씻기만 해도 미끈한 때를 줄일 수 있습니다. 양치 후 칫솔을 꽂으면 물과 치약 잔여물이 아"
 image: "/blog-images/20261018-living-inflow-3.jpg"
 canonical: "https://blog.naver.com/hymini1/224445364875"
+links: {"naver": "https://blog.naver.com/hymini1/224445364875", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_23.html"}
 ---
 # 칫솔꽂이 물 고임 줄이는 위치와 세척 주기
 

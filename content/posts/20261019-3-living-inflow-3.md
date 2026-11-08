@@ -5,6 +5,7 @@ category: "living"
 description: "결론부터 말하면, 가을 현관문 곰팡이는 닦아 내는 일보다 문 안쪽이 차가워지는 시간대를 비켜 가는 생활 습관에서 결과가 갈립니다. 현관은 난방이 거의 닿지 않고, 철문이 바깥 기온을 그대로 안쪽으로 전합니다. 그래서"
 image: "/blog-images/20261019-3-living-inflow-3.png"
 canonical: "https://blog.naver.com/hymini1/224457990522"
+links: {"naver": "https://blog.naver.com/hymini1/224457990522"}
 ---
 # 가을철 현관문 주변 곰팡이, 결로 미리 막는 생활 습관
 

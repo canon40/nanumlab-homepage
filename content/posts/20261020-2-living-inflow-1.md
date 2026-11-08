@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 난방을 본격적으로 시작하기 전 보일러실의 습기와 냄새를 미리 관리하는 것은 쾌적한 실내 환경을 조성하고 보일러의 효율적인 작동에 중요합니다. 주기적인 환기와 청소, 그리고 세심한 점검을 통해 불쾌한 문제 "
 image: "/blog-images/20261020-2-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224448107611"
+links: {"naver": "https://blog.naver.com/hymini1/224448107611", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 난방 시작 전 보일러실 습기와 냄새 미리 잡는 순서
 

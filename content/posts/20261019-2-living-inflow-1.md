@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 김장철 싱크대는 기름때를 먼저 풀고 물때를 그다음에 걷어내는 순서가 편합니다. 반대로 하면 희끗한 물때 위에 기름막이 다시 덮여 같은 자리를 두 번 닦게 됩니다. 마지막에 물기를 남기지 않는 것까지가 한 "
 image: "/blog-images/20261019-2-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224455129825"
+links: {"naver": "https://blog.naver.com/hymini1/224455129825", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_580.html"}
 ---
 # 김장철 주방 싱크대 물때와 기름때 한번에 정리하는 순서
 

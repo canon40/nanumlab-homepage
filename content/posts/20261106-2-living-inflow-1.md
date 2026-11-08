@@ -5,6 +5,7 @@ category: "living"
 description: "욕실에서 세면대 배수구가 원활하게 작동하는지 점검해본 적 있으신가요? 세면대 배수구는 우리가 매일 사용하는 부분임에도 불구하고, 관리가 소홀해지기 쉽습니다. 정기적인 점검이 필요하다는 사실 , 아시나요? 배수구의 문"
 image: "/blog-images/20261106-2-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224467048605"
+links: {"naver": "https://blog.naver.com/hymini1/224467048605"}
 ---
 # 세면대 배수구 점검 체크리스트
 

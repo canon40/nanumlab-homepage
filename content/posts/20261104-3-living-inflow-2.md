@@ -5,6 +5,7 @@ category: "living"
 description: "결론부터 말하면, 겨울철 난방을 효과적으로 사용하기 위해서는 적정 온도 설정과 기구 사용법을 아는 것이 매우 중요합니다. 많은 사람들이 난방의 효율성을 높이기 위해 다양한 방법을 시도하지만, 자주 하는 실수로 인해 "
 image: "/blog-images/20261104-3-living-inflow-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224464828534"
+links: {"naver": "https://blog.naver.com/hymini1/224464828534"}
 ---
 # 겨울철 난방, 자주 하는 실수와 해결법
 

@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 욕실 슬리퍼가 미끌거리는 건 바닥 홈에 낀 비누·물때 막 때문인 경우가 많습니다. 주 1회 바닥면 세척과 걸어서 말리기만으로 상태를 오래 유지할 수 있습니다. 슬리퍼 바닥의 홈은 미끄럼을 막는 역할을 합니"
 image: "/blog-images/20261018-living-inflow-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224445361155"
+links: {"naver": "https://blog.naver.com/hymini1/224445361155", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_990.html"}
 ---
 # 욕실 슬리퍼 바닥 미끌거림, 관리 순서 정리
 

@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 욕실 수납장 안쪽 습기는 문을 닫아 둔 채 샤워할 때 가장 많이 찹니다. 한 달에 한 번 안쪽 모서리와 선반 뒷면을 확인하면 곰팡이와 냄새를 일찍 잡을 수 있습니다. 샤워할 때 생긴 수증기는 수납장 문틈으"
 image: "/blog-images/20261018-living-inflow-4.jpg"
 canonical: "https://blog.naver.com/hymini1/224445368690"
+links: {"naver": "https://blog.naver.com/hymini1/224445368690", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_830.html"}
 ---
 # 욕실 수납장 안쪽 습기, 이렇게 확인하세요
 

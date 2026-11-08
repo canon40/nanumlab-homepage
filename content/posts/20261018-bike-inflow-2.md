@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 겨울철 바이크 배터리 방전은 추위와 장기간 미운행 이 겹칠 때 자주 생깁니다. 보관 전 충전 상태 확인, 장기 보관 시 단자 분리나 유지 충전기 사용으로 봄에 시동 문제를 줄일 수 있습니다. 배터리는 온도"
 image: "/blog-images/20261018-bike-inflow-2.png"
 canonical: "https://blog.naver.com/selfcoat/224449700148"
+links: {"naver": "https://blog.naver.com/selfcoat/224449700148", "blogger": "https://permacoatkorea.blogspot.com/2026/10/blog-post_24.html", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 겨울 전 바이크 배터리 방전 줄이는 보관 습관
 

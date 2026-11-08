@@ -4,8 +4,8 @@ date: "2026-11-03T17:28:34"
 category: "living"
 description: "결론부터 말하면, 가을철에는 습기 관리가 매우 중요합니다. 특히 곰팡이 예방을 위한 습기 환기가 필수적입니다. 환기를 통해 실내 습도를 조절하고, 곰팡이의 발생을 예방할 수 있습니다. 이 글에서는 가을철 습기 관리의"
 image: ""
-canonical: ""
-pending: true
+canonical: "https://canon4041.blogspot.com/2026/11/blog-post_03.html"
+links: {"blogger": "https://canon4041.blogspot.com/2026/11/blog-post_03.html"}
 ---
 # 습기 환기, 가을철 곰팡이 예방을 위한 필수 관리법 — 초보 체크
 

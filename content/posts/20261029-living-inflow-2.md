@@ -5,6 +5,7 @@ category: "living"
 description: "머리카락을 붙잡는 쪽은 거름망입니다. 화장실 배수구 덮개는 머리카락보다 아래에서 올라오는 냄새와 날벌레를 막는 쪽이에요. 역할이 다른데 하나로 둘을 다 해결하려다 보니, 덮개만 예쁘게 올려 둔 집은 얼마 지나 물이 "
 image: "/blog-images/20261029-living-inflow-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224462416234"
+links: {"naver": "https://blog.naver.com/hymini1/224462416234", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post.html"}
 ---
 # 화장실 배수구 거름망과 덮개, 머리카락 막는 쪽은 어디일까
 

@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 바이크 체인에서 나는 \"자글자글\" 소음은 오염, 급유 부족, 장력 문제 중 하나인 경우가 많습니다. 청소 → 건조 → 급유 → 장력 확인 순서로 점검해 보세요. 먼지·모래가 낀 오일 : 오래된 오일에 이물"
 image: "/blog-images/20261018-bike-inflow-1.png"
 canonical: "https://blog.naver.com/selfcoat/224448533673"
+links: {"naver": "https://blog.naver.com/selfcoat/224448533673", "blogger": "https://permacoatkorea.blogspot.com/2026/10/blog-post_23.html", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 바이크 체인 소음, 청소와 급유 순서 점검
 

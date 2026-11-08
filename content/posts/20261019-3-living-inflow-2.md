@@ -5,6 +5,7 @@ category: "living"
 description: "결론부터 말하면, 안방의 꿉꿉한 냄새는 공기 순환이 멈춘 상태에서 벽지와 침구에 배어든 습기가 방출되지 못해 생깁니다. 근본적인 환경 개선을 위해서는 실내에 머무는 습기를 외부로 배출할 통로를 만들고, 섬유 속에 남"
 image: "/blog-images/20261019-3-living-inflow-2.png"
 canonical: "https://blog.naver.com/hymini1/224457612381"
+links: {"naver": "https://blog.naver.com/hymini1/224457612381"}
 ---
 # 환기 어려운 안방, 습기 줄여 꿉꿉한 냄새 없애는 팁
 

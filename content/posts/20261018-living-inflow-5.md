@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 고체 비누가 물러지고 세면대에 미끈한 자국이 남는 건 비누 아래에 물이 고여 있기 때문 입니다. 물이 빠지는 받침과 말리는 위치만 바꿔도 비누가 오래가고 청소도 쉬워집니다. 비누는 물에 닿으면 녹습니다. "
 image: "/blog-images/20261018-living-inflow-5.jpg"
 canonical: "https://blog.naver.com/hymini1/224445389646"
+links: {"naver": "https://blog.naver.com/hymini1/224445389646", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_26.html", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 비누받침 물러짐과 바닥 자국, 이렇게 막아요
 

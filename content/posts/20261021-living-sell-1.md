@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 욕실 샤워부스 유리와 수전의 물때, 주방 싱크대 주변의 물자국, 자동차 앞유리 유막이나 휠에 들러붙는 분진은 생활 속에서 반복되는 흔한 문제입니다. 듀라코트 리빙코트 100ml는 이러한 문제를 한 번에 관"
 image: "/blog-images/20261021-living-sell-1.png"
 canonical: "https://blog.naver.com/hymini1/224449692704"
+links: {"naver": "https://blog.naver.com/hymini1/224449692704", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 욕실 유리 물때와 차 유리 유막, 셀프로 한번에 잡는 법
 

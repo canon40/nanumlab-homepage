@@ -5,6 +5,7 @@ category: "living"
 description: "결론부터 말하면, 세탁실 배수구만 유독 물이 올라오는 이유는 물의 양보다 빠져나가는 속도에 있습니다. 세탁기는 모아 둔 물을 펌프로 한꺼번에 밀어냅니다. 졸졸 흘러 들어가는 세면대나 욕실 물과는 성격이 다릅니다. 그"
 image: "/blog-images/20261029-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224459315005"
+links: {"naver": "https://blog.naver.com/hymini1/224459315005", "blogger": "https://canon4041.blogspot.com/2026/10/blog-post_30.html"}
 ---
 # 세탁실 배수구 역류, 다른 곳은 괜찮은데 왜 여기만 막히나
 

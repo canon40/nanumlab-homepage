@@ -4,8 +4,8 @@ date: "2026-10-30T17:55:07"
 category: "bike"
 description: "결론부터 말하면, 얼룩 제거는 어떤 세제를 쓰느냐보다 손을 대는 시점에서 결과가 갈립니다. 같은 커피 자국도 묻은 직후에는 물에 밀려 나가고 마른 뒤에는 색소가 섬유 속에 앉습니다. 그래서 시간대마다 해야 할 일이 "
 image: ""
-canonical: ""
-pending: true
+canonical: "https://hymini1.tistory.com/501"
+links: {"tistory": "https://hymini1.tistory.com/501"}
 ---
 # 얼룩 제거, 묻은 직후부터 다음 날 세탁까지 시간대별로 하는 일
 

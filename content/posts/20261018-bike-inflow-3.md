@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 비 온 뒤 브레이크 디스크 표면이 붉게 변하는 것은 대체로 자연스러운 현상입니다. 디스크의 마찰면은 패드가 직접 닿아야 하는 곳이라 녹 방지 도장을 하지 않고, 물기가 닿으면 표면부터 산화되기 때문입니다."
 image: "/blog-images/20261018-bike-inflow-3.png"
 canonical: "https://blog.naver.com/selfcoat/224450846200"
+links: {"naver": "https://blog.naver.com/selfcoat/224450846200", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 비 온 뒤 브레이크 디스크 녹, 정상일까?
 

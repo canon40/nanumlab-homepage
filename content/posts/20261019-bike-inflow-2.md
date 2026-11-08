@@ -5,6 +5,7 @@ category: "bike"
 description: "요약하면, 겨울철 바이크 배터리는 기온이 내려갈수록 시동 성능이 약해지기 쉬우므로 출발 전에 단자와 전압 상태를 짧게 확인하는 습관이 도움이 됩니다. 시동이 무겁게 느껴질 때 스타터만 반복해서 돌리면 상태를 더 나쁘"
 image: "/blog-images/20261019-bike-inflow-2.jpg"
 canonical: "https://blog.naver.com/selfcoat/224453868184"
+links: {"naver": "https://blog.naver.com/selfcoat/224453868184"}
 ---
 # 바이크 배터리 겨울철 아침 점검 요령 정리
 

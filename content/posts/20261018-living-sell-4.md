@@ -5,6 +5,7 @@ category: "living"
 description: "요약하면, 물때 제거제는 이미 생긴 자국을 지우는 것 , 코팅제는 지운 뒤 자국이 덜 붙게 하는 것 입니다. 순서가 바뀌면 둘 다 제 역할을 못 합니다. 하얀 물때는 물 속 미네랄이 남은 것이라, 일반 세제로는 잘 "
 image: "/blog-images/20261018-living-sell-4.jpg"
 canonical: "https://blog.naver.com/hymini1/224445387869"
+links: {"naver": "https://blog.naver.com/hymini1/224445387869"}
 ---
 # 욕실 코팅제와 물때 제거제, 역할이 어떻게 다를까
 
