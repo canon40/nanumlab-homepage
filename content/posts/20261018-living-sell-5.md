@@ -5,7 +5,7 @@ category: "living"
 description: "요약하면, 욕실 코팅을 고민하는 순간은 대개 \"주말마다 같은 청소를 반복한다\" 고 느낄 때입니다. 이때는 제품을 사기 전에 내 욕실 상황이 코팅과 맞는지 먼저 확인하는 것이 좋습니다. 주말에 닦은 유리가 수요일쯤 다"
 image: "/blog-images/20261018-living-sell-5.jpg"
 canonical: "https://blog.naver.com/hymini1/224445391624"
-links: {"naver": "https://blog.naver.com/hymini1/224445391624"}
+links: {"naver": "https://blog.naver.com/hymini1/224445391624", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 바쁜 직장인이 욕실 코팅제를 고민하게 되는 순간
 

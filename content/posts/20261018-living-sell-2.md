@@ -5,7 +5,7 @@ category: "living"
 description: "요약하면, 매일 닦는 관리를 주 1회로 줄이려면 샤워 직후 물기 제거 습관 과 물때가 덜 붙는 표면 두 가지가 필요합니다. 하나만으로는 오래 가기 어렵습니다. 수돗물 속 미네랄은 물이 마르면서 표면에 남습니다. 좁은"
 image: "/blog-images/20261018-living-sell-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224445363040"
-links: {"naver": "https://blog.naver.com/hymini1/224445363040"}
+links: {"naver": "https://blog.naver.com/hymini1/224445363040", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 자취방 욕실, 주 1회 관리로 바꾸려면 필요한 것
 

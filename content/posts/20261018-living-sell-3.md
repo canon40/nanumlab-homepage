@@ -5,7 +5,7 @@ category: "living"
 description: "요약하면, 코팅 결과는 바르는 날보다 전날 준비 에서 많이 갈립니다. 물때 제거, 완전 건조, 시공 시간 확보 세 가지를 전날 해 두면 당일 작업이 짧고 깔끔해집니다. 유리와 수전의 하얀 자국을 먼저 지웁니다. 손끝"
 image: "/blog-images/20261018-living-sell-3.jpg"
 canonical: "https://blog.naver.com/hymini1/224445366710"
-links: {"naver": "https://blog.naver.com/hymini1/224445366710"}
+links: {"naver": "https://blog.naver.com/hymini1/224445366710", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 ---
 # 코팅제 바르기 전날 해 두면 좋은 욕실 준비
 
