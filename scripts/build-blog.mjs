@@ -9,6 +9,15 @@ import { marked } from 'marked';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const POSTS = path.join(ROOT, 'content', 'posts');
 const DIST = path.join(ROOT, 'dist');
+// 발행처 링크 (글쓰기 프로그램이 머리말 links 에 넣는다). SNS 는 게시물 주소가 없어 계정 페이지로 간다.
+const CHANNELS = [
+  ['naver', '네이버 블로그'],
+  ['tistory', '티스토리'],
+  ['blogger', '블로거'],
+  ['instagram', '인스타그램'],
+  ['facebook', '페이스북'],
+  ['threads', '스레드'],
+];
 const SITE = 'https://nanumlab.store';
 const CATEGORIES = { living: '리빙', bike: '바이크', car: '자동차' };
 
@@ -46,6 +55,7 @@ function parse(file) {
     image: meta.image || '',
     canonical: meta.canonical || `${SITE}/blog/${slug}/`,
     pending: meta.pending === true, // 아직 네이버 등에 발행 전: 보여 주되 검색 색인은 막는다
+    links: meta.links && typeof meta.links === 'object' ? meta.links : {},
     html: marked.parse(body),
   };
 }
@@ -80,6 +90,10 @@ article .hero{width:100%;border-radius:.75rem;margin:1.5rem 0;display:block}
 .body{font-size:1.05rem}.body h2{font-size:1.4rem;margin:2.5rem 0 .75rem}.body h3{font-size:1.15rem;margin:2rem 0 .5rem}
 .body img{max-width:100%;border-radius:.5rem}.body a{color:var(--accent);text-decoration:underline}.body blockquote{margin:1.5rem 0;padding:.5rem 1rem;border-left:3px solid var(--accent);background:#eef2ff;color:#334155}
 .back{display:inline-block;margin-top:3rem;color:var(--accent);font-weight:700}
+.where{margin-top:3rem;padding:1.25rem 1.4rem;border:1px solid var(--line);border-radius:.75rem;background:#fff}
+.where h3{margin:0 0 .75rem;font-size:1rem}.where div{display:flex;flex-wrap:wrap;gap:.5rem}
+.where a{border:1px solid var(--line);border-radius:999px;padding:.4rem 1rem;font-size:.9rem;font-weight:600;color:var(--fg)}.where a:hover{border-color:var(--accent);color:var(--accent)}
+.where small{display:block;margin-top:.6rem;color:var(--muted);font-size:.78rem}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center;padding:2rem 1rem}
 @media(max-width:640px){h1.page{font-size:1.75rem}article h1{font-size:1.6rem}.bar nav a{margin-left:1rem}}
 `;
@@ -109,6 +123,15 @@ ${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
 <footer>&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd. · <a href="/about/">회사 소개</a></footer>
 </body>
 </html>`;
+}
+
+function where(links) {
+  const items = CHANNELS.filter(([k]) => /^https:\/\//.test(links[k] || ''));
+  if (!items.length) return '';
+  const sns = items.some(([k]) => ['instagram', 'facebook', 'threads'].includes(k));
+  return `<section class="where"><h3>이 글은 여기에도 올라가 있어요</h3><div>${items
+    .map(([k, label]) => `<a href="${esc(links[k])}" target="_blank" rel="noopener">${label}</a>`)
+    .join('')}</div>${sns ? '<small>SNS는 계정 페이지로 연결됩니다.</small>' : ''}</section>`;
 }
 
 function card(p, cls = '') {
@@ -172,7 +195,7 @@ function fromHash(){show(decodeURIComponent(location.hash.slice(1)))}window.addE
         noindex: p.pending,
         body: `<article><div class="meta">${p.category ? `<span class="cat">${esc(CATEGORIES[p.category] || p.category)}</span>` : ''}${fmtDate(p.date)}</div>
 <h1>${esc(p.title)}</h1>${p.image ? `<img class="hero" src="${esc(p.image)}" alt="" />` : ''}
-<div class="body">${p.html}</div><a class="back" href="/">← 목록으로</a></article>`,
+<div class="body">${p.html}</div>${where(p.links)}<a class="back" href="/">← 목록으로</a></article>`,
       }),
     );
   }
