@@ -1,7 +1,7 @@
 // nanumlab.store 정적 페이지 생성 — `vite build` 다음에 실행된다.
 // 사이트는 코팅제(퍼마코트: 자동차·바이크)와 리빙코팅제(듀라코트 리빙코트) 전용 블로그다 (2026-11-08).
-// content/posts/*.md (글쓰기 프로그램이 넣는 글) → dist/index.html(첫 화면), dist/blog/<slug>/index.html,
-// dist/blog/posts.json, dist/sitemap.xml. 기존 회사 소개(React) 화면은 dist/about/ 으로 옮긴다.
+// content/posts/*.md (글쓰기 프로그램이 넣는 글) → dist/blog/index.html(블로그 첫 화면), dist/blog/<slug>/index.html,
+// dist/blog/posts.json, dist/sitemap.xml. 사이트 첫 화면(dist/index.html)은 회사 소개(React).
 // 글 목록은 날짜 최신순. 검색 로봇이 바로 읽도록 자바스크립트 없이 HTML 로 만든다.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -183,13 +183,13 @@ ${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
 <style>${STYLE}</style>
 </head>
 <body>
-<header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
+<header><div class="wrap bar"><a class="brand" href="/blog/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
+<nav><a class="t" href="/blog/#coating">코팅제</a><a class="t" href="/blog/#living">리빙코팅제</a>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
-    : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
+    : '<a class="btn btn-p btn-sm" href="/blog/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 </body>
 </html>`;
@@ -208,7 +208,7 @@ function productCard(key, count) {
   const p = PRODUCTS[key];
   return `<div class="product"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" />
 <div class="in"><span class="badge">${GROUPS[key]}</span><h3>${esc(p.name)}</h3><small>${p.en}</small><p>${esc(p.text)}</p>
-<div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${(STORE_OPEN ? p.links : [])
+<div class="acts"><a class="p" href="/blog/#${key}">관련 글 ${count}편</a>${(STORE_OPEN ? p.links : [])
     .map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`)
     .join('')}</div></div></div>`;
 }
@@ -217,7 +217,7 @@ function related(group) {
   const p = PRODUCTS[group];
   const acts = STORE_OPEN
     ? p.links.map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}" target="_blank" rel="noopener">${label}</a>`).join('')
-    : `<a class="btn btn-p btn-sm" href="/#${group}">${GROUPS[group]} 글 더 보기</a>`;
+    : `<a class="btn btn-p btn-sm" href="/blog/#${group}">${GROUPS[group]} 글 더 보기</a>`;
   const note = STORE_OPEN
     ? '제품 구성과 사용 방법은 스마트스토어 상세 페이지에서 확인하세요.'
     : '시공 순서와 관리 방법은 관련 글에서 더 볼 수 있습니다.';
@@ -267,7 +267,7 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
   const home = layout({
     title: '나눔랩 코팅 | 코팅제·리빙코팅제 사용법과 관리 정보',
     description: '퍼마코트(자동차·바이크 코팅제)와 듀라코트 리빙코트(리빙코팅제) 사용법, 시공 순서, 관리 정보를 최신순으로 정리합니다.',
-    canonical: `${SITE}/`,
+    canonical: `${SITE}/blog/`,
     image: PRODUCTS.living.image,
     on: 'list',
     body: `<section class="hero"><div class="wrap"><div class="kicker">DURACOAT · NANUM LAB</div>
@@ -279,15 +279,12 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
 <section class="sec posts" id="posts"><div class="wrap"><h2 class="sec-h">최신 글</h2><p class="sec-p">새 글이 올라오면 최신순으로 정리됩니다.</p>${chips}${list}</div></section>`,
   });
 
-  // 사이트 첫 화면 = 코팅 블로그. 기존 회사 소개(React) 화면은 /about/ 으로 옮긴다.
+  // 사이트 첫 화면 = 회사 소개(React). 코팅 블로그는 /blog/ (2026-11-09 사용자: 회사 홈페이지를 첫 화면으로 되돌림).
+  // /about/ 은 예전 링크가 깨지지 않게 회사 소개 사본으로 둔다 (canonical 은 첫 화면).
   const rootIndex = path.join(DIST, 'index.html');
   const aboutDir = path.join(DIST, 'about');
   fs.mkdirSync(aboutDir, { recursive: true });
-  const about = fs.readFileSync(rootIndex, 'utf8')
-    .replaceAll(`href="${SITE}/"`, `href="${SITE}/about/"`)
-    .replaceAll(`content="${SITE}/"`, `content="${SITE}/about/"`);
-  fs.writeFileSync(path.join(aboutDir, 'index.html'), about);
-  fs.writeFileSync(rootIndex, home);
+  fs.writeFileSync(path.join(aboutDir, 'index.html'), fs.readFileSync(rootIndex, 'utf8'));
   fs.writeFileSync(path.join(blogDir, 'index.html'), home);
 
   for (const p of posts) {
@@ -302,9 +299,9 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
         image: p.image,
         on: 'post',
         noindex: p.pending,
-        body: `<div class="wrap"><article><div class="meta"><a class="cat" href="/#${p.group}">${GROUPS[p.group]}</a>${fmtDate(p.date)}</div>
+        body: `<div class="wrap"><article><div class="meta"><a class="cat" href="/blog/#${p.group}">${GROUPS[p.group]}</a>${fmtDate(p.date)}</div>
 <h1>${esc(p.title)}</h1>${p.image ? `<img class="hero-img" src="${esc(p.image)}" alt="" />` : ''}
-<div class="body">${p.html}</div>${related(p.group)}${where(p.links)}<a class="back" href="/#${p.group}">← ${GROUPS[p.group]} 글 목록</a></article></div>`,
+<div class="body">${p.html}</div>${related(p.group)}${where(p.links)}<a class="back" href="/blog/#${p.group}">← ${GROUPS[p.group]} 글 목록</a></article></div>`,
       }),
     );
   }
@@ -317,7 +314,7 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
   // sitemap: public/sitemap.xml 에 주소를 더한다 (원본이 다른 곳인 글·발행 전 글은 뺀다)
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/about/`, ...posts.filter((p) => !p.pending && p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
+    const urls = [`${SITE}/blog/`, ...posts.filter((p) => !p.pending && p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
