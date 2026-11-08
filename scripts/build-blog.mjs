@@ -128,12 +128,14 @@ const fmtDate = (d) => {
 const STYLE = `
 :root{--radius:.5rem;--bg:#fff;--fg:oklch(18% .004 285);--primary:#e25500;--muted:oklch(96.5% .002 285);--muted-fg:oklch(50% .006 285);
 --accent:#f5eeec;--accent-fg:#511900;--line:oklch(90% .003 285);--ink:oklch(16% .004 285);--ink-soft:oklch(23% .005 285);--ink-fg:oklch(98% 0 0);--ink-muted:oklch(72% .004 285);
---shadow:0 1px 2px oklch(16% .004 285/.06),0 8px 24px oklch(16% .004 285/.06)}
+--shadow:0 1px 2px oklch(16% .004 285/.06),0 8px 24px oklch(16% .004 285/.06);--surface:#fff;--header:rgba(255,255,255,.92);--img-bg:#e9e9ec}
+:root[data-theme=dark]{--bg:oklch(14% .004 285);--fg:oklch(95% 0 0);--muted:oklch(19% .004 285);--muted-fg:oklch(72% .004 285);--accent:oklch(26% .03 45);--accent-fg:#ffd9c2;--line:oklch(30% .004 285);--ink:oklch(10% .004 285);--surface:oklch(20% .004 285);--header:rgba(20,20,24,.92);--img-bg:oklch(24% .004 285);--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);color-scheme:dark}
+.theme{border:1px solid var(--line);background:transparent;color:inherit;border-radius:999px;padding:.35rem .8rem;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}.theme:hover{border-color:var(--primary);color:var(--primary)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR",system-ui,-apple-system,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
 .wrap{max-width:72rem;margin:0 auto;padding:0 1.25rem}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar{height:4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .brand{display:flex;flex-direction:column;line-height:1.2}.brand b{font-size:1.1rem;font-weight:800}.brand span{font-size:.75rem;color:var(--muted-fg)}
 .bar nav{display:flex;align-items:center;gap:1.5rem;font-size:.95rem;font-weight:600}.bar nav a.t:hover{color:var(--primary)}
@@ -148,7 +150,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdro
 .cta{display:flex;flex-wrap:wrap;gap:.75rem}
 .sec{padding:4.5rem 0}.sec-h{font-size:2.1rem;font-weight:800;margin:0 0 .5rem;letter-spacing:-.01em}.sec-p{color:var(--muted-fg);margin:0 0 2.25rem}
 .products{display:grid;gap:1.5rem;grid-template-columns:1fr 1fr}
-.product{display:grid;grid-template-columns:42% 1fr;border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:#fff}
+.product{display:grid;grid-template-columns:42% 1fr;border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--surface)}
 .product img{width:100%;height:100%;object-fit:cover;object-position:center 62%;background:var(--muted)}
 .product .in{padding:1.6rem;display:flex;flex-direction:column}
 .badge{align-self:flex-start;background:var(--accent);color:var(--accent-fg);font-weight:800;font-size:.78rem;border-radius:999px;padding:.2rem .7rem}
@@ -158,11 +160,11 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdro
 .product .acts a{font-weight:700;font-size:.9rem;border-radius:var(--radius);padding:.5rem .9rem;border:1px solid var(--line)}.product .acts a.p{background:var(--primary);border-color:var(--primary);color:#fff}
 .product .acts a:not(.p):hover{border-color:var(--primary);color:var(--primary)}
 .posts{background:var(--muted)}
-.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.45rem 1.1rem;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--muted-fg)}
-.chips button.on{background:var(--fg);border-color:var(--fg);color:#fff}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.45rem 1.1rem;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--muted-fg)}
+.chips button.on{background:var(--fg);border-color:var(--fg);color:var(--bg)}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
 .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}
-.card{background:#fff;border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
-.card:hover{transform:translateY(-2px)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#e9e9ec}
+.card{background:var(--surface);border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
+.card:hover{transform:translateY(-2px)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--img-bg)}
 .card .in{padding:1.1rem 1.2rem 1.3rem}.meta{font-size:.8rem;color:var(--muted-fg)}.cat{color:var(--primary);font-weight:800;margin-right:.5rem}
 .ch{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.8rem}.ch span{font-size:.72rem;font-weight:700;border-radius:999px;padding:.12rem .55rem;background:var(--muted);color:var(--muted-fg)}
 .ch .ch-naver{background:#e9f8ee;color:#0a7a3c}.ch .ch-tistory{background:#fff1e8;color:#b44400}.ch .ch-blogger{background:#fff4e0;color:#a15c00}
@@ -202,6 +204,7 @@ function layout({ title, description, canonical, image, body, on, noindex = fals
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${esc(canonical)}" />${noindex ? '<meta name="robots" content="noindex" />' : ''}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="alternate" type="application/rss+xml" title="나눔랩 코팅" href="${SITE}/rss.xml" />${VERIFY_META}
 <meta property="og:type" content="${on === 'post' ? 'article' : 'website'}" />
 <meta property="og:title" content="${esc(title)}" />
@@ -214,13 +217,14 @@ ${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
+<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
 <nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/about/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
+<script>if(document.documentElement.dataset.theme==='dark'){var b=document.querySelector('.theme');if(b)b.textContent='흰 화면'}</script>
 </body>
 </html>`;
 }
