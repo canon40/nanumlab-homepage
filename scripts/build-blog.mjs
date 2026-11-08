@@ -1,8 +1,11 @@
 // nanumlab.store 정적 페이지 생성 — `vite build` 다음에 실행된다.
 // 사이트는 코팅제(퍼마코트: 자동차·바이크)와 리빙코팅제(듀라코트 리빙코트) 전용 블로그다 (2026-11-08).
 // content/posts/*.md (글쓰기 프로그램이 넣는 글) → dist/index.html(첫 화면), dist/blog/<slug>/index.html,
-// dist/blog/posts.json, dist/sitemap.xml. 기존 회사 소개(React) 화면은 dist/about/ 으로 옮긴다.
+// dist/blog/posts.json, dist/sitemap.xml, dist/rss.xml. 기존 회사 소개(React) 화면은 dist/about/ 으로 옮긴다.
 // 글 목록은 날짜 최신순. 검색 로봇이 바로 읽도록 자바스크립트 없이 HTML 로 만든다.
+// 2026-11-09 사용자: 이 사이트는 제품을 알리고 블로그 글을 네이버·다음·구글에 노출하기 위한 곳.
+// → 발행된 글은 '요약 페이지'(자체 문장 요약 + 원문 링크)로 만들고 이 페이지 자체를 색인시킨다.
+//   본문 전체를 복사하지 않아 원문(네이버 등)이 유사문서로 밀리지 않는다. 요약은 publish_homepage.py 가 만든다.
 import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
@@ -15,6 +18,29 @@ const STORE = 'https://smartstore.naver.com/nanumlab';
 // 스마트스토어가 열리지 않는 동안(2026-11-08~) 스토어 버튼과 본문 속 스토어 링크 줄을 모두 숨긴다.
 // 스토어가 다시 열리면 true 로 바꾸면 된다 (또는 빌드 환경변수 STORE_OPEN=1).
 const STORE_OPEN = process.env.STORE_OPEN === '1' || false;
+
+// 검색엔진 소유 확인 코드 — site-verification.json {"naver": "", "google": "", "daum": ""}. 빈 값은 넣지 않는다.
+const VERIFY = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'site-verification.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+})();
+const VERIFY_META = [
+  ['naver-site-verification', VERIFY.naver],
+  ['google-site-verification', VERIFY.google],
+]
+  .filter(([, v]) => v)
+  .map(([k, v]) => `\n<meta name="${k}" content="${String(v).replace(/"/g, '')}" />`)
+  .join('');
+
+// 원문 우선순위: 네이버 → 티스토리 → 블로거
+const ORIGIN = [
+  ['naver', '네이버 블로그'],
+  ['tistory', '티스토리'],
+  ['blogger', '블로거'],
+];
 
 // 글 분류(니치) → 사이트 분류. 자동차·바이크 글은 '코팅제', 생활 글은 '리빙코팅제'.
 const GROUP_OF = { car: 'coating', bike: 'coating', living: 'living' };
@@ -83,12 +109,14 @@ function parse(file) {
     date: meta.date,
     category: meta.category || '',
     group: GROUP_OF[meta.category] || 'coating',
-    description: meta.description || text.slice(0, 120),
+    description: (meta.summary && meta.summary.lead) || meta.description || text.slice(0, 120),
     image: meta.image || '',
     canonical: meta.canonical || `${SITE}/blog/${slug}/`,
     pending: meta.pending === true, // 아직 네이버 등에 발행 전: 보여 주되 검색 색인은 막는다
     links: meta.links && typeof meta.links === 'object' ? meta.links : {},
     html: marked.parse(body),
+    // 요약 {lead, points[], tip} — 발행된 글이면 요약 페이지로 만든다
+    summary: meta.summary && typeof meta.summary === 'object' && meta.summary.lead ? meta.summary : null,
   };
 }
 
@@ -146,6 +174,7 @@ article{max-width:44rem;margin:0 auto;padding:3rem 0 4rem}article h1{font-size:2
 article .hero-img{width:100%;border-radius:.75rem;margin:1.5rem 0}
 .body{font-size:1.05rem}.body h2{font-size:1.4rem;margin:2.5rem 0 .75rem}.body h3{font-size:1.15rem;margin:2rem 0 .5rem}
 .body img{border-radius:.5rem}.body a{color:var(--primary);text-decoration:underline}.body blockquote{margin:1.5rem 0;padding:.5rem 1rem;border-left:3px solid var(--primary);background:var(--accent);color:var(--accent-fg)}
+.summary .lead{font-size:1.15rem;line-height:1.8}.summary ul{padding-left:1.2rem}.summary li{margin:.4rem 0}.summary .tip{margin-top:1.5rem;padding:.75rem 1rem;border-radius:.5rem;background:var(--accent);color:var(--accent-fg)}.summary .tip b{margin-right:.5rem}.summary a.orig{display:inline-flex;margin-top:2rem;color:#fff;text-decoration:none}.summary .orig-note{display:block;margin-top:.5rem;color:var(--muted-fg)}
 .rel{margin-top:3rem;display:grid;grid-template-columns:8rem 1fr;gap:1.25rem;align-items:center;background:var(--ink);color:var(--ink-fg);border-radius:.75rem;padding:1.25rem;box-shadow:var(--shadow)}
 .rel img{border-radius:.5rem;aspect-ratio:1;object-fit:cover}.rel .k{color:var(--primary);font-weight:800;font-size:.8rem}.rel b{display:block;font-size:1.2rem;margin:.1rem 0 .4rem}
 .rel p{margin:0 0 .9rem;color:var(--ink-muted);font-size:.9rem}.rel .acts{display:flex;flex-wrap:wrap;gap:.5rem}
@@ -173,6 +202,7 @@ function layout({ title, description, canonical, image, body, on, noindex = fals
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${esc(canonical)}" />${noindex ? '<meta name="robots" content="noindex" />' : ''}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title="나눔랩 코팅" href="${SITE}/rss.xml" />${VERIFY_META}
 <meta property="og:type" content="${on === 'post' ? 'article' : 'website'}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
@@ -239,6 +269,22 @@ function chips(links) {
   return on.length ? `<div class="ch">${on.map(([k]) => `<span class="ch-${k}">${SHORT[k]}</span>`).join('')}</div>` : '';
 }
 
+function origin(p) {
+  for (const [k, label] of ORIGIN) if (/^https:\/\//.test(p.links[k] || '')) return { key: k, label, url: p.links[k] };
+  return null;
+}
+
+// 요약 페이지 본문: 자체 문장 요약 + 핵심 정리 + 원문 전체 보기 버튼 (원문 문장은 옮기지 않는다)
+function summaryHtml(p, o) {
+  const s = p.summary;
+  const points = (Array.isArray(s.points) ? s.points : []).filter(Boolean);
+  return `<div class="body summary"><p class="lead">${esc(s.lead)}</p>
+${points.length ? `<h2>핵심 정리</h2><ul>${points.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+${s.tip ? `<p class="tip"><b>한 줄 팁</b> ${esc(s.tip)}</p>` : ''}
+<a class="btn btn-p orig" href="${esc(o.url)}" target="_blank" rel="noopener">원문 전체 보기 · ${o.label}</a>
+<small class="orig-note">자세한 순서와 사진은 원문에 있습니다.</small></div>`;
+}
+
 function main() {
   if (!fs.existsSync(DIST)) throw new Error('dist 가 없습니다. vite build 를 먼저 하세요.');
   const files = fs.existsSync(POSTS) ? fs.readdirSync(POSTS).filter((f) => f.endsWith('.md')) : [];
@@ -293,20 +339,51 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
   for (const p of posts) {
     const dir = path.join(blogDir, p.slug);
     fs.mkdirSync(dir, { recursive: true });
+    const head = `<div class="wrap"><article><div class="meta"><a class="cat" href="/#${p.group}">${GROUPS[p.group]}</a>${fmtDate(p.date)}</div>
+<h1>${esc(p.title)}</h1>${p.image ? `<img class="hero-img" src="${esc(p.image)}" alt="" />` : ''}`;
+    const tail = `${related(p.group)}${where(p.links)}<a class="back" href="/#${p.group}">← ${GROUPS[p.group]} 글 목록</a></article></div>`;
+    const o = origin(p);
+    const isSummary = Boolean(p.summary && o && !p.pending);
+    p.indexUrl = isSummary ? `${SITE}/blog/${p.slug}/` : ''; // 사이트맵·RSS 에는 요약 페이지만
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       layout({
         title: `${p.title} | 나눔랩 코팅`,
         description: p.description,
-        canonical: p.canonical,
+        // 요약 페이지는 이 페이지가 원본 (자체 문장) → 자기 주소. 아니면 예전처럼 원문 주소.
+        canonical: isSummary ? `${SITE}/blog/${p.slug}/` : p.canonical,
         image: p.image,
         on: 'post',
         noindex: p.pending,
-        body: `<div class="wrap"><article><div class="meta"><a class="cat" href="/#${p.group}">${GROUPS[p.group]}</a>${fmtDate(p.date)}</div>
-<h1>${esc(p.title)}</h1>${p.image ? `<img class="hero-img" src="${esc(p.image)}" alt="" />` : ''}
-<div class="body">${p.html}</div>${related(p.group)}${where(p.links)}<a class="back" href="/#${p.group}">← ${GROUPS[p.group]} 글 목록</a></article></div>`,
+        body: isSummary ? `${head}${summaryHtml(p, o)}${tail}` : `${head}<div class="body">${p.html}</div>${tail}`,
       }),
     );
+  }
+  const indexed = posts.filter((p) => p.indexUrl && p.indexUrl.startsWith(SITE));
+
+  // RSS — 네이버 서치어드바이저·다음에 제출해 새 요약 페이지를 바로 수집하게 한다
+  const rssItems = indexed
+    .slice(0, 50)
+    .map(
+      (p) => `<item><title>${esc(p.title)}</title><link>${p.indexUrl}</link><guid>${p.indexUrl}</guid>
+<description>${esc(p.description)}</description><category>${GROUPS[p.group]}</category><pubDate>${new Date(p.date).toUTCString()}</pubDate></item>`,
+    )
+    .join('\n');
+  fs.writeFileSync(
+    path.join(DIST, 'rss.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>나눔랩 코팅</title><link>${SITE}/</link>
+<description>퍼마코트·듀라코트 리빙코트 사용법과 관리 정보</description><language>ko</language>
+${rssItems}
+</channel></rss>
+`,
+  );
+
+  // 다음 웹마스터도구 확인 — robots.txt 맨 위 주석 한 줄
+  if (VERIFY.daum) {
+    const rb = path.join(DIST, 'robots.txt');
+    const cur = fs.existsSync(rb) ? fs.readFileSync(rb, 'utf8') : 'User-agent: *\nAllow: /\n';
+    fs.writeFileSync(rb, `#DaumWebMasterTool:${String(VERIFY.daum).trim()}\n${cur}`);
   }
 
   fs.writeFileSync(
@@ -317,12 +394,14 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
   // sitemap: public/sitemap.xml 에 주소를 더한다 (원본이 다른 곳인 글·발행 전 글은 뺀다)
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/about/`, ...posts.filter((p) => !p.pending && p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
+    const urls = [`${SITE}/about/`, ...indexed.map((p) => p.indexUrl)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
   }
-  console.log(`블로그: 글 ${posts.length}편 생성 (코팅제 ${count('coating')} · 리빙코팅제 ${count('living')})`);
+  console.log(
+    `블로그: 글 ${posts.length}편 생성 (코팅제 ${count('coating')} · 리빙코팅제 ${count('living')}) · 색인용 요약 페이지 ${indexed.length}편`,
+  );
 }
 
 main();
