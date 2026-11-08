@@ -6,6 +6,7 @@ description: "요약하면, 물때 제거제는 이미 생긴 자국을 지우�
 image: "/blog-images/20261018-living-sell-4.jpg"
 canonical: "https://blog.naver.com/hymini1/224445387869"
 links: {"naver": "https://blog.naver.com/hymini1/224445387869", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "욕실 코팅제와 물때 제거제의 차이를 이해하면 효과적으로 욕실 관리를 할 수 있습니다. 물때 제거제는 자국을 지우고, 코팅제는 자국이 덜 붙게 도와줍니다.", "points": ["물때 제거제는 이미 생긴 자국을 지운다.", "코팅제는 깨끗한 표면에 얇은 막을 만든다.", "먼저 물때 제거제를 사용한 후 코팅제를 발라야 한다.", "코팅제는 물때를 지우는 제품이 아니다.", "두 제품을 섞어 쓰지 않아야 한다."], "tip": "욕실 청소 후 물기를 제거하는 습관을 기르세요."}
 ---
 # 욕실 코팅제와 물때 제거제, 역할이 어떻게 다를까
 

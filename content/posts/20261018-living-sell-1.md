@@ -6,6 +6,7 @@ description: "요약하면, 처음 코팅제를 쓸 때 실패는 대부분 제�
 image: "/blog-images/20261018-living-sell-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224445359256"
 links: {"naver": "https://blog.naver.com/hymini1/224445359256", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "샤워부스 유리 코팅제를 처음 사용할 때 주의해야 할 세 가지 포인트를 소개합니다. 준비, 양, 건조 상태를 제대로 관리하면 성공적인 코팅을 할 수 있습니다.", "points": ["유리에 물때가 남아 있으면 코팅이 실패합니다.", "양을 많이 바르면 줄무늬가 생길 수 있습니다.", "코팅 후 즉시 샤워를 하면 고르게 안 됩니다.", "주말 오전, 욕실을 하루 비우는 날이 적합합니다.", "처음 사용할 땐 작은 면적부터 테스트하세요."], "tip": "코팅 전에 물때를 완전히 제거하고 유리를 말린 후 시작하세요."}
 ---
 # 샤워부스 유리 코팅제, 처음 쓰는 사람이 실패하는 지점 3가지
 

@@ -6,6 +6,7 @@ description: "요약하면, 욕실 코팅을 고민하는 순간은 대개 \"주
 image: "/blog-images/20261018-living-sell-5.jpg"
 canonical: "https://blog.naver.com/hymini1/224445391624"
 links: {"naver": "https://blog.naver.com/hymini1/224445391624", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "욕실 코팅제를 고민하는 순간은 주로 반복적인 청소에 지칠 때입니다. 욕실 상황에 맞는 코팅제를 선택하기 전, 확인해야 할 사항들을 알아보세요.", "points": ["유리가 빠르게 더러워질 때 고민이 시작된다.", "샤워 후 물기를 닦을 시간이 부족할 때 문제가 발생한다.", "손님이 오는 전날 밤에 청소를 하게 된다.", "매끈한 표면이 많은 욕실에 코팅이 적합하다.", "곰팡이나 두꺼운 물때는 코팅보다 우선적으로 해결해야 한다.", "간단한 청소 루틴을 두 주간 실천해본 후 코팅을 고려하자."], "tip": "욕실 청소 후 스크래퍼로 물기를 제거하는 습관을 들여보세요."}
 ---
 # 바쁜 직장인이 욕실 코팅제를 고민하게 되는 순간
 

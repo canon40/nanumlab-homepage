@@ -6,6 +6,7 @@ description: "요약하면, 매일 닦는 관리를 주 1회로 줄이려면 샤
 image: "/blog-images/20261018-living-sell-2.jpg"
 canonical: "https://blog.naver.com/hymini1/224445363040"
 links: {"naver": "https://blog.naver.com/hymini1/224445363040", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "자취방 욕실 관리를 주 1회로 줄이기 위해 필요한 두 가지 요소를 소개합니다. 물기 제거 습관과 물때 방지 표면이 핵심입니다.", "points": ["샤워 후 물기 제거는 필수입니다.", "좁은 욕실은 물이 잘 마르지 않습니다.", "주 1회 청소는 기본입니다.", "코팅은 청소를 대신하지 않습니다.", "작은 욕실에 적합한 제품을 선택해야 합니다."], "tip": "샤워 후 스크래퍼로 물기를 제거하면 관리가 수월해집니다."}
 ---
 # 자취방 욕실, 주 1회 관리로 바꾸려면 필요한 것
 

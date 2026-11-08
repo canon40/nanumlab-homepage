@@ -6,6 +6,7 @@ description: "요약하면, 욕실 샤워부스 유리와 수전의 물때, 주�
 image: "/blog-images/20261021-living-sell-1.png"
 canonical: "https://blog.naver.com/hymini1/224449692704"
 links: {"naver": "https://blog.naver.com/hymini1/224449692704", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "욕실의 유리 물때와 자동차 유리의 유막 문제를 쉽게 해결할 수 있는 방법을 안내합니다. 듀라코트 리빙코트를 활용하면 복잡한 청소 없이 효과적으로 관리할 수 있습니다.", "points": ["욕실과 주방의 물때 문제는 일상적인 불편함이다.", "기존 방법은 임시방편적이며 불편할 수 있다.", "듀라코트 리빙코트는 멀티 코팅제로 다양한 표면에 적용 가능하다.", "세 단계로 간단하게 시공할 수 있다.", "코팅 전 반드시 표면 세정이 필요하다."], "tip": "듀라코트 리빙코트를 사용해 집과 차를 동시에 관리하세요."}
 ---
 # 욕실 유리 물때와 차 유리 유막, 셀프로 한번에 잡는 법
 

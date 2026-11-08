@@ -6,6 +6,7 @@ description: "요약하면, 코팅 결과는 바르는 날보다 전날 준비 �
 image: "/blog-images/20261018-living-sell-3.jpg"
 canonical: "https://blog.naver.com/hymini1/224445366710"
 links: {"naver": "https://blog.naver.com/hymini1/224445366710", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "욕실 코팅제를 바르기 전날 준비하는 방법을 소개합니다. 물때 제거, 실리콘 점검, 환기 등 세 가지를 통해 코팅 결과를 개선할 수 있습니다.", "points": ["물때와 비누 찌꺼기를 제거합니다.", "실리콘과 줄눈 상태를 확인합니다.", "욕실을 밤새 환기시킵니다.", "당일 체크리스트를 준비합니다.", "듀라코트 리빙코트 사용 전 주의사항을 확인합니다."], "tip": "코팅하기 전날 충분한 준비로 작업 효율성을 높이세요."}
 ---
 # 코팅제 바르기 전날 해 두면 좋은 욕실 준비
 
