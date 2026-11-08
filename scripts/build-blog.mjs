@@ -12,6 +12,9 @@ const POSTS = path.join(ROOT, 'content', 'posts');
 const DIST = path.join(ROOT, 'dist');
 const SITE = 'https://nanumlab.store';
 const STORE = 'https://smartstore.naver.com/nanumlab';
+// 스마트스토어가 열리지 않는 동안(2026-11-08~) 스토어 버튼과 본문 속 스토어 링크 줄을 모두 숨긴다.
+// 스토어가 다시 열리면 true 로 바꾸면 된다 (또는 빌드 환경변수 STORE_OPEN=1).
+const STORE_OPEN = process.env.STORE_OPEN === '1' || false;
 
 // 글 분류(니치) → 사이트 분류. 자동차·바이크 글은 '코팅제', 생활 글은 '리빙코팅제'.
 const GROUP_OF = { car: 'coating', bike: 'coating', living: 'living' };
@@ -69,9 +72,10 @@ function parse(file) {
     console.warn(`건너뜀 (slug 형식): ${file}`);
     return null;
   }
-  const body = m[2]
+  let body = m[2]
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/^\s*#\s+.*\r?\n/, ''); // 본문 첫 # 제목은 페이지 제목과 겹치므로 뺀다
+  if (!STORE_OPEN) body = body.replace(/^.*smartstore\.naver\.com.*(\r?\n|$)/gm, '');
   const text = body.replace(/[#>*_`\-\[\]()!]/g, ' ').replace(/\s+/g, ' ').trim();
   return {
     slug,
@@ -177,10 +181,12 @@ ${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a></nav></div></header>
+<nav><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
+    ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
+    : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav><a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a><a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/about/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 </body>
 </html>`;
@@ -199,17 +205,21 @@ function productCard(key, count) {
   const p = PRODUCTS[key];
   return `<div class="product"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" />
 <div class="in"><span class="badge">${GROUPS[key]}</span><h3>${esc(p.name)}</h3><small>${p.en}</small><p>${esc(p.text)}</p>
-<div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${p.links
+<div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${(STORE_OPEN ? p.links : [])
     .map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`)
     .join('')}</div></div></div>`;
 }
 
 function related(group) {
   const p = PRODUCTS[group];
+  const acts = STORE_OPEN
+    ? p.links.map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}" target="_blank" rel="noopener">${label}</a>`).join('')
+    : `<a class="btn btn-p btn-sm" href="/#${group}">${GROUPS[group]} 글 더 보기</a>`;
+  const note = STORE_OPEN
+    ? '제품 구성과 사용 방법은 스마트스토어 상세 페이지에서 확인하세요.'
+    : '시공 순서와 관리 방법은 관련 글에서 더 볼 수 있습니다.';
   return `<aside class="rel"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" /><div><span class="k">${GROUPS[group]}</span><b>${esc(p.name)}</b>
-<p>제품 구성과 사용 방법은 스마트스토어 상세 페이지에서 확인하세요.</p><div class="acts">${p.links
-    .map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}" target="_blank" rel="noopener">${label}</a>`)
-    .join('')}</div></div></aside>`;
+<p>${note}</p><div class="acts">${acts}</div></div></aside>`;
 }
 
 function card(p, cls = '') {
@@ -254,7 +264,7 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
 <h1>코팅제와 리빙코팅제,<br /><em>제대로 쓰는 법</em>을 모았습니다</h1>
 <p>자동차·바이크 도장면 코팅부터 욕실·주방 생활 표면 코팅까지. 시공 순서와 관리 방법을 글로 정리해 두었습니다.</p>
 <div class="cta"><a class="btn btn-p" href="#coating">코팅제 글 보기</a><a class="btn btn-o" href="#living">리빙코팅제 글 보기</a></div></div></section>
-<section class="sec"><div class="wrap"><h2 class="sec-h">다루는 제품</h2><p class="sec-p">글은 두 가지 제품을 중심으로 씁니다.</p>
+<section class="sec" id="products"><div class="wrap"><h2 class="sec-h">다루는 제품</h2><p class="sec-p">글은 두 가지 제품을 중심으로 씁니다.</p>
 <div class="products">${productCard('coating', count('coating'))}${productCard('living', count('living'))}</div></div></section>
 <section class="sec posts" id="posts"><div class="wrap"><h2 class="sec-h">최신 글</h2><p class="sec-p">새 글이 올라오면 최신순으로 정리됩니다.</p>${chips}${list}</div></section>`,
   });
