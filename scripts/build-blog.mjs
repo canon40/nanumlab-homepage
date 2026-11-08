@@ -45,6 +45,7 @@ function parse(file) {
     description: meta.description || text.slice(0, 120),
     image: meta.image || '',
     canonical: meta.canonical || `${SITE}/blog/${slug}/`,
+    pending: meta.pending === true, // 아직 네이버 등에 발행 전: 보여 주되 검색 색인은 막는다
     html: marked.parse(body),
   };
 }
@@ -83,7 +84,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-
 @media(max-width:640px){h1.page{font-size:1.75rem}article h1{font-size:1.6rem}.bar nav a{margin-left:1rem}}
 `;
 
-function layout({ title, description, canonical, image, body, on }) {
+function layout({ title, description, canonical, image, body, on, noindex = false }) {
   return `<!doctype html>
 <html lang="ko">
 <head>
@@ -91,7 +92,7 @@ function layout({ title, description, canonical, image, body, on }) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}" />
-<link rel="canonical" href="${esc(canonical)}" />
+<link rel="canonical" href="${esc(canonical)}" />${noindex ? '<meta name="robots" content="noindex" />' : ''}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta property="og:type" content="${on === 'post' ? 'article' : 'website'}" />
 <meta property="og:title" content="${esc(title)}" />
@@ -168,6 +169,7 @@ function fromHash(){show(decodeURIComponent(location.hash.slice(1)))}window.addE
         canonical: p.canonical,
         image: p.image,
         on: 'post',
+        noindex: p.pending,
         body: `<article><div class="meta">${p.category ? `<span class="cat">${esc(CATEGORIES[p.category] || p.category)}</span>` : ''}${fmtDate(p.date)}</div>
 <h1>${esc(p.title)}</h1>${p.image ? `<img class="hero" src="${esc(p.image)}" alt="" />` : ''}
 <div class="body">${p.html}</div><a class="back" href="/">← 목록으로</a></article>`,
@@ -183,7 +185,7 @@ function fromHash(){show(decodeURIComponent(location.hash.slice(1)))}window.addE
   // sitemap: public/sitemap.xml 에 블로그 주소를 더한다
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/about/`, ...posts.filter((p) => p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
+    const urls = [`${SITE}/about/`, ...posts.filter((p) => !p.pending && p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
