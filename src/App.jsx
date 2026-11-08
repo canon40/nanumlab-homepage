@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import HeroSection from "@/components/hero/HeroSection";
+import LatestPosts from "@/components/LatestPosts";
 
 const techStacks = [
   {
@@ -99,6 +100,7 @@ export default function App() {
             <a href="#competencies" className="hover:text-indigo-600 transition">핵심역량</a>
             <a href="#tech-stack" className="hover:text-indigo-600 transition">기술스택</a>
             <a href="#portfolio" className="hover:text-indigo-600 transition">사업이력</a>
+            <a href="/blog/" className="hover:text-indigo-600 transition">블로그</a>
           </nav>
           <Button variant="default" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-md">
             비즈니스 문의
@@ -298,6 +300,8 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+
+      <LatestPosts />
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-500 py-12 border-t border-slate-800">
