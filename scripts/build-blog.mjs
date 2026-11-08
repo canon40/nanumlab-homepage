@@ -70,6 +70,9 @@ h1.page{font-size:2.25rem;font-weight:800;margin:0 0 .5rem}.lead{color:var(--mut
 .card:hover{box-shadow:0 8px 24px rgba(15,23,42,.08)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#eef2f7;display:block}
 .card .in{padding:1.1rem 1.2rem 1.3rem}.meta{font-size:.8rem;color:var(--muted)}.cat{color:var(--accent);font-weight:700;margin-right:.5rem}
 .card h2{font-size:1.1rem;line-height:1.45;margin:.35rem 0 .5rem}.card p{margin:0;color:var(--muted);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.feature{display:grid;grid-template-columns:1.2fr 1fr;margin-bottom:2rem}.feature img{aspect-ratio:auto;height:100%;min-height:16rem}.feature .in{padding:2rem;display:flex;flex-direction:column;justify-content:center}.feature h2{font-size:1.6rem}.feature p{-webkit-line-clamp:4;font-size:1rem}
+.hero-intro{padding:1rem 0 1rem}
+@media(max-width:768px){.feature{grid-template-columns:1fr}.feature img{min-height:0;aspect-ratio:16/10}.feature .in{padding:1.2rem}.feature h2{font-size:1.3rem}}
 .empty{color:var(--muted);padding:4rem 0;text-align:center}
 article{max-width:44rem;margin:0 auto}article h1{font-size:2rem;line-height:1.35;font-weight:800;margin:.5rem 0 1rem}
 article .hero{width:100%;border-radius:.75rem;margin:1.5rem 0;display:block}
@@ -100,15 +103,15 @@ ${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
 <style>${STYLE}</style>
 </head>
 <body>
-<header><div class="bar"><a class="brand" href="/">주식회사 나눔랩</a><nav><a href="/">홈</a><a href="/blog/" class="${on ? 'on' : ''}">블로그</a></nav></div></header>
+<header><div class="bar"><a class="brand" href="/">나눔랩 블로그</a><nav>${Object.entries(CATEGORIES).map(([k, v]) => `<a href="/#${k}">${v}</a>`).join('')}</nav></div></header>
 <main>${body}</main>
-<footer>&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</footer>
+<footer>&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd. · <a href="/about/">회사 소개</a></footer>
 </body>
 </html>`;
 }
 
-function card(p) {
-  return `<a class="card" href="/blog/${p.slug}/" data-cat="${esc(p.category)}">
+function card(p, cls = '') {
+  return `<a class="card${cls}" href="/blog/${p.slug}/" data-cat="${esc(p.category)}">
 ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" />` : ''}
 <div class="in"><div class="meta">${p.category ? `<span class="cat">${esc(CATEGORIES[p.category] || p.category)}</span>` : ''}${fmtDate(p.date)}</div>
 <h2>${esc(p.title)}</h2><p>${esc(p.description)}</p></div></a>`;
@@ -126,21 +129,33 @@ function main() {
   fs.mkdirSync(blogDir, { recursive: true });
 
   const cats = [...new Set(posts.map((p) => p.category).filter(Boolean))];
-  const chips = cats.length > 1
-    ? `<div class="chips"><button class="on" data-c="">전체</button>${cats.map((c) => `<button data-c="${esc(c)}">${esc(CATEGORIES[c] || c)}</button>`).join('')}</div>
-<script>document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){var c=b.dataset.c;document.querySelectorAll('.chips button').forEach(function(x){x.classList.toggle('on',x===b)});document.querySelectorAll('.card').forEach(function(el){el.style.display=!c||el.dataset.cat===c?'':'none'})}})</script>`
-    : '';
-  const list = posts.length ? `<div class="grid">${posts.map(card).join('\n')}</div>` : '<div class="empty">아직 올라온 글이 없습니다.</div>';
-  fs.writeFileSync(
-    path.join(blogDir, 'index.html'),
-    layout({
-      title: '블로그 | 주식회사 나눔랩',
-      description: '생활·바이크·자동차 표면 관리 정보를 정리한 나눔랩 블로그',
-      canonical: `${SITE}/blog/`,
-      on: 'list',
-      body: `<h1 class="page">블로그</h1><p class="lead">새 글이 올라오면 최신순으로 정리됩니다.</p>${chips}${list}`,
-    }),
-  );
+  // 분류 버튼: 주소 #living 등으로도 열린다 (상단 메뉴 링크). 첫 글은 크게(feature) 보여 준다.
+  const chips = `<div class="chips"><button class="on" data-c="">전체</button>${cats.map((c) => `<button data-c="${esc(c)}">${esc(CATEGORIES[c] || c)}</button>`).join('')}</div>
+<script>(function(){function show(c){document.querySelectorAll('.chips button').forEach(function(x){x.classList.toggle('on',x.dataset.c===c)});document.querySelectorAll('.card').forEach(function(el){el.style.display=!c||el.dataset.cat===c?'':'none'})}
+document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){history.replaceState(null,'',b.dataset.c?'#'+b.dataset.c:location.pathname);show(b.dataset.c)}});
+function fromHash(){show(decodeURIComponent(location.hash.slice(1)))}window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
+  const [first, ...rest] = posts;
+  const list = posts.length
+    ? `${card(first, ' feature')}<div class="grid">${rest.map((p) => card(p)).join('\n')}</div>`
+    : '<div class="empty">아직 올라온 글이 없습니다.</div>';
+  const home = layout({
+    title: '나눔랩 블로그 | 생활·자동차·바이크 관리 정보',
+    description: '욕실·주방 물때, 자동차·바이크 세차와 코팅 관리 정보를 최신순으로 정리한 나눔랩 블로그',
+    canonical: `${SITE}/`,
+    on: 'list',
+    body: `<div class="hero-intro"><h1 class="page">나눔랩 블로그</h1><p class="lead">생활 공간과 자동차·바이크 표면 관리 정보를 모았습니다. 새 글이 올라오면 최신순으로 정리됩니다.</p></div>${chips}${list}`,
+  });
+  fs.writeFileSync(path.join(blogDir, 'index.html'), home);
+
+  // 사이트 첫 화면 = 블로그. 기존 회사 소개(React) 화면은 /about/ 으로 옮긴다.
+  const rootIndex = path.join(DIST, 'index.html');
+  const aboutDir = path.join(DIST, 'about');
+  fs.mkdirSync(aboutDir, { recursive: true });
+  const about = fs.readFileSync(rootIndex, 'utf8')
+    .replaceAll(`href="${SITE}/"`, `href="${SITE}/about/"`)
+    .replaceAll(`content="${SITE}/"`, `content="${SITE}/about/"`);
+  fs.writeFileSync(path.join(aboutDir, 'index.html'), about);
+  fs.writeFileSync(rootIndex, home);
 
   for (const p of posts) {
     const dir = path.join(blogDir, p.slug);
@@ -155,7 +170,7 @@ function main() {
         on: 'post',
         body: `<article><div class="meta">${p.category ? `<span class="cat">${esc(CATEGORIES[p.category] || p.category)}</span>` : ''}${fmtDate(p.date)}</div>
 <h1>${esc(p.title)}</h1>${p.image ? `<img class="hero" src="${esc(p.image)}" alt="" />` : ''}
-<div class="body">${p.html}</div><a class="back" href="/blog/">← 목록으로</a></article>`,
+<div class="body">${p.html}</div><a class="back" href="/">← 목록으로</a></article>`,
       }),
     );
   }
@@ -168,7 +183,7 @@ function main() {
   // sitemap: public/sitemap.xml 에 블로그 주소를 더한다
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/blog/`, ...posts.filter((p) => p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
+    const urls = [`${SITE}/about/`, ...posts.filter((p) => p.canonical.startsWith(SITE)).map((p) => `${SITE}/blog/${p.slug}/`)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
