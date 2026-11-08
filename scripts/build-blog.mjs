@@ -136,6 +136,9 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdro
 .card{background:#fff;border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
 .card:hover{transform:translateY(-2px)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#e9e9ec}
 .card .in{padding:1.1rem 1.2rem 1.3rem}.meta{font-size:.8rem;color:var(--muted-fg)}.cat{color:var(--primary);font-weight:800;margin-right:.5rem}
+.ch{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.8rem}.ch span{font-size:.72rem;font-weight:700;border-radius:999px;padding:.12rem .55rem;background:var(--muted);color:var(--muted-fg)}
+.ch .ch-naver{background:#e9f8ee;color:#0a7a3c}.ch .ch-tistory{background:#fff1e8;color:#b44400}.ch .ch-blogger{background:#fff4e0;color:#a15c00}
+.ch .ch-instagram,.ch .ch-facebook,.ch .ch-threads{background:#eef0ff;color:#3a3f9e}
 .card h2{font-size:1.1rem;line-height:1.45;margin:.35rem 0 .5rem}.card p{margin:0;color:var(--muted-fg);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .feature{display:grid;grid-template-columns:1.2fr 1fr;margin-bottom:1.5rem}.feature img{aspect-ratio:auto;height:100%;min-height:17rem}.feature .in{padding:2rem;display:flex;flex-direction:column;justify-content:center}.feature h2{font-size:1.6rem}.feature p{-webkit-line-clamp:4;font-size:1rem}
 .empty{color:var(--muted-fg);padding:4rem 0;text-align:center}
@@ -226,7 +229,14 @@ function card(p, cls = '') {
   return `<a class="card${cls}" href="/blog/${p.slug}/" data-cat="${p.group}">
 ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" />` : ''}
 <div class="in"><div class="meta"><span class="cat">${GROUPS[p.group]}</span>${fmtDate(p.date)}</div>
-<h2>${esc(p.title)}</h2><p>${esc(p.description)}</p></div></a>`;
+<h2>${esc(p.title)}</h2><p>${esc(p.description)}</p>${chips(p.links)}</div></a>`;
+}
+
+// 목록 카드용 발행처 표시 (카드 전체가 링크라 표시만 — 실제 링크는 글 페이지 아래 칸)
+const SHORT = { naver: '네이버', tistory: '티스토리', blogger: '블로거', instagram: '인스타', facebook: '페북', threads: '스레드' };
+function chips(links) {
+  const on = CHANNELS.filter(([k]) => /^https:\/\//.test(links[k] || ''));
+  return on.length ? `<div class="ch">${on.map(([k]) => `<span class="ch-${k}">${SHORT[k]}</span>`).join('')}</div>` : '';
 }
 
 function main() {
