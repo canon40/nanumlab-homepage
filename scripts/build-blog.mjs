@@ -47,6 +47,10 @@ const ORIGIN = [
 // 글 분류(니치) → 사이트 분류. 자동차·바이크 글은 '코팅제', 생활 글은 '리빙코팅제'.
 const GROUP_OF = { car: 'coating', bike: 'coating', living: 'living' };
 const GROUPS = { coating: '코팅제', living: '리빙코팅제' };
+// 전체 글 목록(content/external-index.json)에만 있는 분류: 코팅·생활과 무관한 예전 글
+const LIST_GROUPS = { ...GROUPS, etc: '기타 글' };
+const INDEX_FILE = path.join(ROOT, 'content', 'external-index.json');
+const NAVER_ACC = { hymini1: '네이버1', selfcoat: '네이버2', 'a-easy': '네이버3' };
 
 // 제품 정보는 엔진(make_sales_blog_post.PRODUCTS)과 판매글에 있는 사실만 쓴다. 효능 단정·최상급 금지 (표시광고법).
 const PRODUCTS = {
@@ -166,7 +170,7 @@ header{position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter
 .product .acts a:not(.p):hover{border-color:var(--primary);color:var(--primary)}
 .posts{background:var(--muted)}
 .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.45rem 1.1rem;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--muted-fg)}
-.chips.src{margin-top:-1.25rem;align-items:center}.chips.src span{font-size:.9rem;font-weight:700;color:var(--muted-fg);margin-right:.25rem}.chips button.on{background:var(--fg);border-color:var(--fg);color:var(--bg)}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
+.find{display:flex;gap:.75rem;align-items:center;margin:-1rem 0 2rem}.find input{flex:1;max-width:28rem;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:var(--radius);padding:.65rem .9rem;font:inherit}.find span{color:var(--muted-fg);font-weight:700}.more-wrap{text-align:center;margin-top:2rem}.card.ext .go{background:none;color:var(--primary);font-weight:800}.chips.src{margin-top:-1.25rem;align-items:center}.chips.src span{font-size:.9rem;font-weight:700;color:var(--muted-fg);margin-right:.25rem}.chips button.on{background:var(--fg);border-color:var(--fg);color:var(--bg)}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
 .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}
 .card{background:var(--surface);border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
 .card:hover{transform:translateY(-2px)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--img-bg)}
@@ -314,20 +318,63 @@ function main() {
   fs.mkdirSync(blogDir, { recursive: true });
 
   // 분류 버튼: 주소 #coating / #living 으로도 열린다 (상단 메뉴·제품 카드 링크) → 글 목록으로 내려간다.
-  const srcCount = (k) => posts.filter((p) => srcs(p.links).includes(k)).length;
-  const chips = `<div class="chips" data-k="c"><button class="on" data-v="">전체<em>${posts.length}</em></button>${Object.entries(GROUPS)
-    .map(([k, v]) => `<button data-v="${k}">${v}<em>${count(k)}</em></button>`)
+  // 전체 글 목록: 이 사이트의 글(요약 페이지) + 네이버1·2·3·티스토리·블로거에 공개된 모든 글 (2026-11-09 사용자 요청)
+  // 이 사이트에 페이지가 없는 글은 카드를 누르면 원문으로 바로 간다. 목록 데이터는 /blog/all.json (화면에서 불러옴).
+  const accOf = (links) => {
+    const acc = [];
+    const nv = (links.naver || '').match(/blog\.naver\.com\/([\w-]+)/);
+    if (nv) acc.push(NAVER_ACC[nv[1]] || '네이버');
+    if (/^https:\/\//.test(links.tistory || '')) acc.push('티스토리');
+    if (/^https:\/\//.test(links.blogger || '')) acc.push('블로거');
+    if (['instagram', 'facebook', 'threads'].some((k) => /^https:\/\//.test(links[k] || ''))) acc.push('SNS');
+    return acc;
+  };
+  const norm = (u) => String(u).replace(/[?#].*$/, '').replace(/\/$/, '');
+  const own = new Set();
+  const all = posts.map((p) => {
+    Object.values(p.links).forEach((u) => own.add(norm(u)));
+    return { t: p.title, d: String(p.date).slice(0, 10), g: p.group, u: `/blog/${p.slug}/`, a: accOf(p.links), i: p.image || '', s: p.description };
+  });
+  let index = [];
+  try {
+    index = JSON.parse(fs.readFileSync(INDEX_FILE, 'utf8'));
+  } catch {
+    index = [];
+  }
+  for (const e of index) {
+    if (own.has(norm(e.url))) continue; // 이미 요약 페이지가 있는 글
+    all.push({ t: e.title, d: String(e.date).slice(0, 10), g: GROUP_OF[e.cat] || 'etc', u: e.url, a: [e.a], x: 1 });
+  }
+  all.sort((a, b) => b.d.localeCompare(a.d) || (a.x ? 1 : 0) - (b.x ? 1 : 0));
+  fs.writeFileSync(path.join(blogDir, 'all.json'), JSON.stringify(all));
+  const ACCS = ['네이버1', '네이버2', '네이버3', '티스토리', '블로거', 'SNS'];
+  const gCount = (g) => all.filter((x) => x.g === g).length;
+  const aCount = (a) => all.filter((x) => x.a.includes(a)).length;
+  const chips = `<div class="chips" data-k="c"><button class="on" data-v="">전체<em>${all.length}</em></button>${Object.entries(LIST_GROUPS)
+    .map(([k, v]) => `<button data-v="${k}">${v}<em>${gCount(k)}</em></button>`)
     .join('')}</div>
-<div class="chips src" data-k="s"><span>올라간 곳</span><button class="on" data-v="">모두</button>${SRC.map(([k, v]) => `<button data-v="${k}">${v}<em>${srcCount(k)}</em></button>`).join('')}</div>
-<script>(function(){var st={c:'',s:''};function apply(){document.querySelectorAll('.chips').forEach(function(g){g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.v===st[g.dataset.k])})});
-document.querySelectorAll('.card').forEach(function(el){var ok=(!st.c||el.dataset.cat===st.c)&&(!st.s||(' '+el.dataset.src+' ').indexOf(' '+st.s+' ')>=0);el.style.display=ok?'':'none'})}
-document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){st[b.parentNode.dataset.k]=b.dataset.v;var h=[st.c,st.s].filter(Boolean).join('-');history.replaceState(null,'',h?'#'+h:location.pathname);apply()}});
-function fromHash(){var h=decodeURIComponent(location.hash.slice(1)).split('-');st.c=h.indexOf('coating')>=0?'coating':h.indexOf('living')>=0?'living':'';st.s='';['naver','tistory','blogger','sns'].forEach(function(k){if(h.indexOf(k)>=0)st.s=k});apply();if(st.c||st.s)document.getElementById('posts').scrollIntoView()}
-window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
+<div class="chips src" data-k="s"><span>올라간 곳</span><button class="on" data-v="">모두</button>${ACCS.map((a) => `<button data-v="${a}">${a}<em>${aCount(a)}</em></button>`).join('')}</div>
+<div class="find"><input id="q" type="search" placeholder="제목으로 찾기 (예: 욕실, 와이퍼, 퍼마코트)" /><span id="n"></span></div>`;
   const [first, ...rest] = posts;
-  const list = posts.length
+  const staticList = posts.length
     ? `${card(first, ' feature')}<div class="grid">${rest.map((p) => card(p)).join('\n')}</div>`
     : '<div class="empty">아직 올라온 글이 없습니다.</div>';
+  // 자바스크립트가 없으면(검색 로봇 등) 이 사이트의 글 목록을 그대로 보여 준다. 있으면 전체 글 목록으로 바꾼다.
+  const list = `<div id="list">${staticList}</div><div class="more-wrap"><button id="more" class="btn btn-o" hidden>더 보기</button></div>
+<script>(function(){var G=${JSON.stringify(LIST_GROUPS)},ACC=${JSON.stringify(ACCS)},st={c:'',s:'',q:''},all=null,shown=0,PAGE=48,box=document.getElementById('list'),more=document.getElementById('more'),n=document.getElementById('n');
+function esc(t){return String(t||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function fd(d){var p=d.split('-');return p.length===3?(+p[0])+'. '+(+p[1])+'. '+(+p[2])+'.':d}
+function card(x){var ext=x.x?' target="_blank" rel="noopener"':'';return '<a class="card'+(x.x?' ext':'')+'" href="'+esc(x.u)+'"'+ext+'>'+(x.i?'<img src="'+esc(x.i)+'" alt="" loading="lazy" />':'')+'<div class="in"><div class="meta"><span class="cat">'+(G[x.g]||'')+'</span>'+fd(x.d)+'</div><h2>'+esc(x.t)+'</h2>'+(x.s?'<p>'+esc(x.s)+'</p>':'')+'<div class="ch">'+x.a.map(function(a){return '<span>'+esc(a)+'</span>'}).join('')+(x.x?'<span class="go">원문 보기 ↗</span>':'')+'</div></div></a>'}
+function pick(){var q=st.q.trim().toLowerCase();return all.filter(function(x){return(!st.c||x.g===st.c)&&(!st.s||x.a.indexOf(st.s)>=0)&&(!q||x.t.toLowerCase().indexOf(q)>=0)})}
+function render(reset){if(!all)return;var L=pick();if(reset){shown=0;box.innerHTML='<div class="grid"></div>'}n.textContent=L.length+'편';if(!L.length){box.innerHTML='<div class="empty">맞는 글이 없습니다.</div>';more.hidden=true;return}var g=box.querySelector('.grid'),next=L.slice(shown,shown+PAGE);g.insertAdjacentHTML('beforeend',next.map(card).join(''));shown+=next.length;more.hidden=shown>=L.length}
+function mark(){document.querySelectorAll('.chips').forEach(function(g){g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.v===st[g.dataset.k])})})}
+document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){st[b.parentNode.dataset.k]=b.dataset.v;mark();var h=[st.c,st.s].filter(Boolean).join('-');history.replaceState(null,'',h?'#'+encodeURIComponent(h):location.pathname);render(true)}});
+var tm;document.getElementById('q').oninput=function(e){clearTimeout(tm);tm=setTimeout(function(){st.q=e.target.value;render(true)},200)};
+more.onclick=function(){render(false)};
+var ALIAS={tistory:'티스토리',blogger:'블로거',sns:'SNS',naver:'네이버1',naver1:'네이버1',naver2:'네이버2',naver3:'네이버3'};
+function fromHash(){var h=decodeURIComponent(location.hash.slice(1)).split('-');st.c='';st.s='';h.forEach(function(k){if(G[k])st.c=k;if(ACC.indexOf(k)>=0)st.s=k;if(ALIAS[k])st.s=ALIAS[k]});mark();render(true);if(st.c||st.s)document.getElementById('posts').scrollIntoView()}
+window.addEventListener('hashchange',fromHash);
+fetch('/blog/all.json').then(function(r){return r.json()}).then(function(d){all=d;fromHash()}).catch(function(){})})()</script>`;
 
   const home = layout({
     title: '나눔랩 코팅 | 코팅제·리빙코팅제 사용법과 관리 정보',
@@ -341,7 +388,7 @@ window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
 <div class="cta"><a class="btn btn-p" href="#coating">코팅제 글 보기</a><a class="btn btn-o" href="#living">리빙코팅제 글 보기</a></div></div></section>
 <section class="sec" id="products"><div class="wrap"><h2 class="sec-h">다루는 제품</h2><p class="sec-p">글은 두 가지 제품을 중심으로 씁니다.</p>
 <div class="products">${productCard('coating', count('coating'))}${productCard('living', count('living'))}</div></div></section>
-<section class="sec posts" id="posts"><div class="wrap"><h2 class="sec-h">최신 글</h2><p class="sec-p">새 글이 올라오면 최신순으로 정리됩니다.</p>${chips}${list}</div></section>`,
+<section class="sec posts" id="posts"><div class="wrap"><h2 class="sec-h">전체 글</h2><p class="sec-p">네이버 블로그 3곳·티스토리·블로거에 올린 글을 모두 모았습니다. 최신순이며 새 글은 자동으로 더해집니다.</p>${chips}${list}</div></section>`,
   });
 
   // 사이트 첫 화면 = 코팅 블로그. 기존 회사 소개(React) 화면은 /about/ 으로 옮긴다.
