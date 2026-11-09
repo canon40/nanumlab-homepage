@@ -4,7 +4,7 @@
 "a": "네이버3",
 "url": "https://blog.naver.com/a-easy/224470749522",
 "title": "수성 유리막코팅제, 폴리실라잔 원액과 피막이 생기는 원리가 다른 이유",
-"date": "2026-11-09T22:28:27",
+"date": "2026-11-10T08:10:06",
 "cat": "car"
 },
 {
@@ -12,7 +12,7 @@
 "a": "네이버3",
 "url": "https://blog.naver.com/a-easy/224470057522",
 "title": "타이어 공기압, 상황별로 다르게 보는 기준",
-"date": "2026-11-09T22:28:27",
+"date": "2026-11-10T08:10:06",
 "cat": "car"
 },
 {
@@ -20,7 +20,7 @@
 "a": "네이버3",
 "url": "https://blog.naver.com/a-easy/224469862229",
 "title": "셀프 세차장, 초보가 자주 놓치는 점",
-"date": "2026-11-09T22:28:27",
+"date": "2026-11-10T08:10:06",
 "cat": "car"
 },
 {
@@ -28,7 +28,7 @@
 "a": "네이버2",
 "url": "https://blog.naver.com/selfcoat/224469860849",
 "title": "체인오일, 가을철 라이딩 성능 팁 알아보기",
-"date": "2026-11-09T22:28:15",
+"date": "2026-11-10T08:09:56",
 "cat": "bike"
 },
 {
@@ -36,7 +36,7 @@
 "a": "네이버1",
 "url": "https://blog.naver.com/hymini1/224470053655",
 "title": "자동차 유리, 세차 후 물자국 남는 이유는?",
-"date": "2026-11-09T22:27:34",
+"date": "2026-11-10T08:09:26",
 "cat": "car"
 },
 {
@@ -44,8 +44,16 @@
 "a": "네이버1",
 "url": "https://blog.naver.com/hymini1/224469857879",
 "title": "주방 배수구, 초보가 자주 놓치는 점",
-"date": "2026-11-09T22:27:34",
+"date": "2026-11-10T08:09:26",
 "cat": "living"
+},
+{
+"p": "tistory",
+"a": "티스토리",
+"url": "https://hymini1.tistory.com/513",
+"title": "오토바이 코팅, 바르면 안 되는 곳부터 가리는 순서",
+"date": "2026-11-10T08:03:16",
+"cat": "bike"
 },
 {
 "p": "blogger",
@@ -62,6 +70,14 @@
 "title": "바이크 세차, 환경에 따른 최적의 관리 방법은?",
 "date": "2026-11-09T15:58:32",
 "cat": "bike"
+},
+{
+"p": "blogger",
+"a": "블로거",
+"url": "https://canon4041.blogspot.com/2026/11/blog-post_09.html",
+"title": "샤워부스 유리 코팅, 바르기 전 준비 세 가지",
+"date": "2026-11-09T14:53:38",
+"cat": "living"
 },
 {
 "p": "blogger",
@@ -5712,14 +5728,6 @@
 "cat": "car"
 },
 {
-"p": "tistory",
-"a": "티스토리",
-"url": "https://hymini1.tistory.com/340",
-"title": "첫눈과 염화칼슘, 퍼마코트 코팅 차량의 현명한 겨울나기",
-"date": "2026-08-23T14:30:01",
-"cat": "car"
-},
-{
 "p": "blogger",
 "a": "블로거",
 "url": "https://permacoatkorea.blogspot.com/2026/08/blog-post_394.html",
@@ -5797,14 +5805,6 @@
 "url": "https://permacoatkorea.blogspot.com/2026/08/blog-post_986.html",
 "title": "전문점 시공비 아끼고, 주말 두 시간으로 끝! 퍼마코트가 당신의 차를 바꿉니다",
 "date": "2026-08-23T10:52:49",
-"cat": "car"
-},
-{
-"p": "tistory",
-"a": "티스토리",
-"url": "https://hymini1.tistory.com/331",
-"title": "전문점 시공비 아끼고, 주말 두 시간으로 끝! 퍼마코트가 당신의 차를 바꿉니다",
-"date": "2026-08-23T10:51:49",
 "cat": "car"
 },
 {
@@ -6480,14 +6480,6 @@
 "cat": "car"
 },
 {
-"p": "tistory",
-"a": "티스토리",
-"url": "https://hymini1.tistory.com/326",
-"title": "주말 두 시간 투자로 워터스팟 고민 끝! 퍼마코트 전문가가 알려주는 예방 비법",
-"date": "2026-08-22T23:57:00",
-"cat": "car"
-},
-{
 "p": "naver",
 "a": "네이버1",
 "url": "https://blog.naver.com/hymini1/224386980314",
@@ -6576,27 +6568,11 @@
 "cat": "living"
 },
 {
-"p": "tistory",
-"a": "티스토리",
-"url": "https://hymini1.tistory.com/319",
-"title": "욕실 물때, 식초? 듀라코트 리빙코트로 청소 횟수를 줄이세요!",
-"date": "2026-08-21T07:42:47",
-"cat": "living"
-},
-{
 "p": "blogger",
 "a": "블로거",
 "url": "https://permacoatkorea.blogspot.com/2026/08/blog-post_224.html",
 "title": "매일 닦아도 생기는 욕실 유리 물때, 이제 그만! 듀라코트 리빙코트의 과학적인 해결책",
 "date": "2026-08-21T07:41:03",
-"cat": "living"
-},
-{
-"p": "tistory",
-"a": "티스토리",
-"url": "https://hymini1.tistory.com/318",
-"title": "매일 닦아도 생기는 욕실 유리 물때, 이제 그만! 듀라코트 리빙코트의 과학적인 해결책",
-"date": "2026-08-21T07:40:25",
 "cat": "living"
 },
 {
