@@ -330,9 +330,10 @@ function main() {
     return acc;
   };
   const norm = (u) => String(u).replace(/[?#].*$/, '').replace(/\/$/, '');
-  const own = new Set();
+  const tkey = (t) => String(t || '').replace(/[^0-9A-Za-z가-힣]+/g, '').toLowerCase();
+  const own = new Set(); // "주소|제목" — 같은 주소라도 발행처 제목이 다르면(티스토리·블로거용 정보글) 따로 보여 준다
   const all = posts.map((p) => {
-    Object.values(p.links).forEach((u) => own.add(norm(u)));
+    Object.values(p.links).forEach((u) => own.add(`${norm(u)}|${tkey(p.title)}`));
     return { t: p.title, d: String(p.date).slice(0, 10), g: p.group, u: `/blog/${p.slug}/`, a: accOf(p.links), i: p.image || '', s: p.description };
   });
   let index = [];
@@ -342,7 +343,7 @@ function main() {
     index = [];
   }
   for (const e of index) {
-    if (own.has(norm(e.url))) continue; // 이미 요약 페이지가 있는 글
+    if (own.has(`${norm(e.url)}|${tkey(e.title)}`)) continue; // 이미 같은 제목의 요약 페이지가 있는 글
     all.push({ t: e.title, d: String(e.date).slice(0, 10), g: GROUP_OF[e.cat] || 'etc', u: e.url, a: [e.a], x: 1 });
   }
   all.sort((a, b) => b.d.localeCompare(a.d) || (a.x ? 1 : 0) - (b.x ? 1 : 0));
