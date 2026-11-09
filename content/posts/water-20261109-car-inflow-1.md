@@ -5,7 +5,7 @@ category: "car"
 description: "세차를 끝내고 코팅제를 고르다 보면 '수성'이라는 말이 자주 눈에 띕니다. 냄새가 덜하다니 끌리는데, 한편으로는 물로 된 코팅이 제대로 붙을까 싶기도 하죠. 수성 유리막코팅제와 폴리실라잔 원액은 같은 재료를 물에 탄"
 image: "/blog-images/water-20261109-car-inflow-1.jpg"
 canonical: "https://blog.naver.com/a-easy/224470749522"
-links: {"naver": "https://blog.naver.com/a-easy/224470749522", "blogger": "https://permacoatkorea.blogspot.com/2026/11/blog-post_102.html"}
+links: {"naver": "https://blog.naver.com/a-easy/224470749522", "blogger": "https://permacoatkorea.blogspot.com/2026/11/blog-post_102.html", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 summary: {"lead": "수성 유리막코팅제와 폴리실라잔 원액의 차이를 이해하면 제품 선택에 도움이 됩니다. 두 코팅제가 어떻게 다른 원리로 막을 형성하는지 알아보세요.", "points": ["수성 코팅제는 물로 이루어진 제품이다.", "폴리실라잔 원액은 유기 용제에 녹인 무기 고분자다.", "수성 제품은 물에 덜 예민한 성분을 사용한다.", "바르는 방법이 결과에 큰 영향을 미친다.", "수성 코팅제는 냄새가 덜해 작업하기 편하다."], "tip": "수성 코팅제를 선택할 때 바르는 방식을 꼭 확인하세요."}
 ---
 # 수성 유리막코팅제, 폴리실라잔 원액과 피막이 생기는 원리가 다른 이유
