@@ -166,7 +166,7 @@ header{position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter
 .product .acts a:not(.p):hover{border-color:var(--primary);color:var(--primary)}
 .posts{background:var(--muted)}
 .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.45rem 1.1rem;font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;color:var(--muted-fg)}
-.chips button.on{background:var(--fg);border-color:var(--fg);color:var(--bg)}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
+.chips.src{margin-top:-1.25rem;align-items:center}.chips.src span{font-size:.9rem;font-weight:700;color:var(--muted-fg);margin-right:.25rem}.chips button.on{background:var(--fg);border-color:var(--fg);color:var(--bg)}.chips em{font-style:normal;opacity:.6;margin-left:.3rem;font-size:.85em}
 .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))}
 .card{background:var(--surface);border-radius:.75rem;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .15s}
 .card:hover{transform:translateY(-2px)}.card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--img-bg)}
@@ -265,7 +265,7 @@ function related(group) {
 }
 
 function card(p, cls = '') {
-  return `<a class="card${cls}" href="/blog/${p.slug}/" data-cat="${p.group}">
+  return `<a class="card${cls}" href="/blog/${p.slug}/" data-cat="${p.group}" data-src="${srcs(p.links).join(' ')}">
 ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" />` : ''}
 <div class="in"><div class="meta"><span class="cat">${GROUPS[p.group]}</span>${fmtDate(p.date)}</div>
 <h2>${esc(p.title)}</h2><p>${esc(p.description)}</p>${chips(p.links)}</div></a>`;
@@ -276,6 +276,13 @@ const SHORT = { naver: '네이버', tistory: '티스토리', blogger: '블로거
 function chips(links) {
   const on = CHANNELS.filter(([k]) => /^https:\/\//.test(links[k] || ''));
   return on.length ? `<div class="ch">${on.map(([k]) => `<span class="ch-${k}">${SHORT[k]}</span>`).join('')}</div>` : '';
+}
+
+// 발행처 분류: 네이버 / 티스토리 / 블로거 / SNS(인스타·페북·스레드)
+const SRC = [['naver', '네이버'], ['tistory', '티스토리'], ['blogger', '블로거'], ['sns', 'SNS']];
+function srcs(links) {
+  const has = (k) => /^https:\/\//.test(links[k] || '');
+  return SRC.map(([k]) => k).filter((k) => (k === 'sns' ? ['instagram', 'facebook', 'threads'].some(has) : has(k)));
 }
 
 function origin(p) {
@@ -307,12 +314,15 @@ function main() {
   fs.mkdirSync(blogDir, { recursive: true });
 
   // 분류 버튼: 주소 #coating / #living 으로도 열린다 (상단 메뉴·제품 카드 링크) → 글 목록으로 내려간다.
-  const chips = `<div class="chips"><button class="on" data-c="">전체<em>${posts.length}</em></button>${Object.entries(GROUPS)
-    .map(([k, v]) => `<button data-c="${k}">${v}<em>${count(k)}</em></button>`)
+  const srcCount = (k) => posts.filter((p) => srcs(p.links).includes(k)).length;
+  const chips = `<div class="chips" data-k="c"><button class="on" data-v="">전체<em>${posts.length}</em></button>${Object.entries(GROUPS)
+    .map(([k, v]) => `<button data-v="${k}">${v}<em>${count(k)}</em></button>`)
     .join('')}</div>
-<script>(function(){function show(c){document.querySelectorAll('.chips button').forEach(function(x){x.classList.toggle('on',x.dataset.c===c)});document.querySelectorAll('.card').forEach(function(el){el.style.display=!c||el.dataset.cat===c?'':'none'})}
-document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){history.replaceState(null,'',b.dataset.c?'#'+b.dataset.c:location.pathname);show(b.dataset.c)}});
-function fromHash(){var c=decodeURIComponent(location.hash.slice(1));if(c!=='coating'&&c!=='living')c='';show(c);if(c)document.getElementById('posts').scrollIntoView()}
+<div class="chips src" data-k="s"><span>올라간 곳</span><button class="on" data-v="">모두</button>${SRC.map(([k, v]) => `<button data-v="${k}">${v}<em>${srcCount(k)}</em></button>`).join('')}</div>
+<script>(function(){var st={c:'',s:''};function apply(){document.querySelectorAll('.chips').forEach(function(g){g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.v===st[g.dataset.k])})});
+document.querySelectorAll('.card').forEach(function(el){var ok=(!st.c||el.dataset.cat===st.c)&&(!st.s||(' '+el.dataset.src+' ').indexOf(' '+st.s+' ')>=0);el.style.display=ok?'':'none'})}
+document.querySelectorAll('.chips button').forEach(function(b){b.onclick=function(){st[b.parentNode.dataset.k]=b.dataset.v;var h=[st.c,st.s].filter(Boolean).join('-');history.replaceState(null,'',h?'#'+h:location.pathname);apply()}});
+function fromHash(){var h=decodeURIComponent(location.hash.slice(1)).split('-');st.c=h.indexOf('coating')>=0?'coating':h.indexOf('living')>=0?'living':'';st.s='';['naver','tistory','blogger','sns'].forEach(function(k){if(h.indexOf(k)>=0)st.s=k});apply();if(st.c||st.s)document.getElementById('posts').scrollIntoView()}
 window.addEventListener('hashchange',fromHash);fromHash()})()</script>`;
   const [first, ...rest] = posts;
   const list = posts.length
