@@ -226,12 +226,12 @@ ${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? ima
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><a class="t" href="/permacoat/">퍼마코트 브랜드</a>${STORE_OPEN
+<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/permacoat/">퍼마코트 브랜드·바이어 자료</a><a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/about/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 <script>if(document.documentElement.dataset.theme==='dark'){var b=document.querySelector('.theme');if(b)b.textContent='흰 화면'}</script>
 </body>
@@ -251,7 +251,7 @@ function productCard(key, count) {
   const p = PRODUCTS[key];
   return `<div class="product"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" />
 <div class="in"><span class="badge">${GROUPS[key]}</span><h3>${esc(p.name)}</h3><small>${p.en}</small><p>${esc(p.text)}</p>${STORE_OPEN && p.price ? `<p class="price">${esc(p.price)}<span>할인가는 스토어 사정에 따라 바뀔 수 있어요. 구매 전 상세페이지 확인</span></p>` : ''}
-<div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${key === 'coating' ? '<a href="/permacoat/">브랜드 소개·시리즈 비교</a>' : ''}${(STORE_OPEN ? p.links : [])
+<div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${(STORE_OPEN ? p.links : [])
     .map(([label, url]) => `<a href="${url}${UTM}" target="_blank" rel="noopener">${label}</a>`)
     .join('')}</div></div></div>`;
 }
@@ -461,7 +461,7 @@ ${rssItems}
   // sitemap: public/sitemap.xml 에 주소를 더한다 (원본이 다른 곳인 글·발행 전 글은 뺀다)
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/about/`, `${SITE}/permacoat/`, `${SITE}/permacoat/permacoat_car_series.html`, `${SITE}/permacoat/permacoat_bike_series.html`, ...indexed.map((p) => p.indexUrl)];
+    const urls = [`${SITE}/about/`, ...indexed.map((p) => p.indexUrl)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
