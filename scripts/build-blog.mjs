@@ -215,7 +215,7 @@ function layout({ title, description, canonical, image, body, on, noindex = fals
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${esc(canonical)}" />
-${image ? `<meta property="og:image" content="${esc(SITE + image)}" />` : ''}
+${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? image : SITE + image)}" />` : ''}
 <meta property="og:locale" content="ko_KR" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <style>${STYLE}</style>
