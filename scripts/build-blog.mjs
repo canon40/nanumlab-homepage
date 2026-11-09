@@ -17,7 +17,9 @@ const SITE = 'https://nanumlab.store';
 const STORE = 'https://smartstore.naver.com/nanumlab';
 // 스마트스토어가 열리지 않는 동안(2026-11-08~) 스토어 버튼과 본문 속 스토어 링크 줄을 모두 숨긴다.
 // 스토어가 다시 열리면 true 로 바꾸면 된다 (또는 빌드 환경변수 STORE_OPEN=1).
-const STORE_OPEN = process.env.STORE_OPEN === '1' || false;
+// 2026-11-09 사용자: 스토어 다시 열림 → 기본 켬. 다시 닫히면 STORE_OPEN=0 으로 빌드.
+const STORE_OPEN = process.env.STORE_OPEN !== '0';
+const UTM = '?utm_source=nanumlab_store&utm_medium=referral';
 
 // 검색엔진 소유 확인 코드 — site-verification.json {"naver": "", "google": "", "daum": ""}. 빈 값은 넣지 않는다.
 const VERIFY = (() => {
@@ -54,8 +56,8 @@ const PRODUCTS = {
     image: '/products/permacoat.jpg',
     text: '자동차·바이크 도장면에 쓰는 셀프 코팅제입니다. 세차 후 물자국과 오염 관리에 도움이 되도록 표면에 코팅막을 만듭니다.',
     links: [
-      ['자동차용 보기', 'https://smartstore.naver.com/nanumlab/products/12809532969'],
-      ['바이크용 보기', 'https://smartstore.naver.com/nanumlab/products/12808836901'],
+      ['자동차용 구매하기', 'https://smartstore.naver.com/nanumlab/products/12809532969'],
+      ['바이크용 구매하기', 'https://smartstore.naver.com/nanumlab/products/12808836901'],
     ],
   },
   living: {
@@ -63,7 +65,9 @@ const PRODUCTS = {
     en: 'DURACOAT LIVINGCOAT',
     image: '/products/livingcoat.jpg',
     text: '욕실·주방 같은 생활 표면과 차량 유리·플라스틱·휠에 함께 쓰는 리빙코팅제입니다. 물과 오염이 덜 달라붙게 도와 평소 관리가 쉬워집니다.',
-    links: [['스토어에서 보기', 'https://smartstore.naver.com/nanumlab/products/13740782664']],
+    links: [['스토어에서 구매하기', 'https://smartstore.naver.com/nanumlab/products/13740782664']],
+    // 판매자 확인 가격 (product_facts.LIVINGCOAT_PRICE, 2026-10-21). 퍼마코트 가격은 받지 않아 표시하지 않는다.
+    price: '정가 47,500원 → 블로그 링크 42,900원',
   },
 };
 
@@ -156,6 +160,7 @@ header{position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter
 .badge{align-self:flex-start;background:var(--accent);color:var(--accent-fg);font-weight:800;font-size:.78rem;border-radius:999px;padding:.2rem .7rem}
 .product h3{font-size:1.5rem;font-weight:800;margin:.6rem 0 0;line-height:1.3}.product small{color:var(--muted-fg);letter-spacing:.06em;font-size:.72rem}
 .product p{color:var(--muted-fg);font-size:.95rem;margin:.75rem 0 1.25rem}
+.product .price{margin:-.5rem 0 1rem;font-weight:800;color:var(--primary);font-size:1rem}.product .price span{display:block;font-weight:400;font-size:.75rem;color:var(--muted-fg)}
 .product .acts{margin-top:auto;display:flex;flex-wrap:wrap;gap:.5rem}
 .product .acts a{font-weight:700;font-size:.9rem;border-radius:var(--radius);padding:.5rem .9rem;border:1px solid var(--line)}.product .acts a.p{background:var(--primary);border-color:var(--primary);color:#fff}
 .product .acts a:not(.p):hover{border-color:var(--primary);color:var(--primary)}
@@ -241,19 +246,19 @@ function where(links) {
 function productCard(key, count) {
   const p = PRODUCTS[key];
   return `<div class="product"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" />
-<div class="in"><span class="badge">${GROUPS[key]}</span><h3>${esc(p.name)}</h3><small>${p.en}</small><p>${esc(p.text)}</p>
+<div class="in"><span class="badge">${GROUPS[key]}</span><h3>${esc(p.name)}</h3><small>${p.en}</small><p>${esc(p.text)}</p>${STORE_OPEN && p.price ? `<p class="price">${esc(p.price)}<span>할인가는 스토어 사정에 따라 바뀔 수 있어요. 구매 전 상세페이지 확인</span></p>` : ''}
 <div class="acts"><a class="p" href="/#${key}">관련 글 ${count}편</a>${(STORE_OPEN ? p.links : [])
-    .map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`)
+    .map(([label, url]) => `<a href="${url}${UTM}" target="_blank" rel="noopener">${label}</a>`)
     .join('')}</div></div></div>`;
 }
 
 function related(group) {
   const p = PRODUCTS[group];
   const acts = STORE_OPEN
-    ? p.links.map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}" target="_blank" rel="noopener">${label}</a>`).join('')
+    ? p.links.map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}${UTM}" target="_blank" rel="noopener">${label}</a>`).join('')
     : `<a class="btn btn-p btn-sm" href="/#${group}">${GROUPS[group]} 글 더 보기</a>`;
   const note = STORE_OPEN
-    ? '제품 구성과 사용 방법은 스마트스토어 상세 페이지에서 확인하세요.'
+    ? (p.price ? `${p.price}. 할인가는 스토어 사정에 따라 바뀔 수 있으니 구매 전 상세페이지에서 확인하세요.` : '가격·용량과 사용 방법은 스마트스토어 상세 페이지에서 확인하세요.')
     : '시공 순서와 관리 방법은 관련 글에서 더 볼 수 있습니다.';
   return `<aside class="rel"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy" /><div><span class="k">${GROUPS[group]}</span><b>${esc(p.name)}</b>
 <p>${note}</p><div class="acts">${acts}</div></div></aside>`;
