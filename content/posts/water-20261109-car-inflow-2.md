@@ -5,7 +5,7 @@ category: "car"
 description: "수성 코팅제 병을 보면 신기한 점이 있습니다. 유리막 코팅에 쓰는 규소 계열 성분은 물을 만나면 굳는 재료인데, 정작 병 안은 거의 물입니다. 비밀은 코팅 성분이 병 안에서는 물과 바로 반응하지 않도록 감싸 두고, "
 image: "/blog-images/water-20261109-car-inflow-2.jpg"
 canonical: "https://blog.naver.com/a-easy/224471682649"
-links: {"naver": "https://blog.naver.com/a-easy/224471682649"}
+links: {"naver": "https://blog.naver.com/a-easy/224471682649", "blogger": "https://permacoatkorea.blogspot.com/2026/11/blog-post_11.html", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 summary: {"lead": "수성 코팅제는 물에 섞이지만 병 안에서는 굳지 않는 독특한 성질을 가지고 있습니다. 이는 코팅 성분이 물과 반응하지 않도록 설계되어 있기 때문입니다.", "points": ["수성 코팅제는 물과 반응해 굳는 성분으로 구성된다.", "병 안에서는 코팅 성분이 감싸여 있어 반응이 일어나지 않는다.", "도장면에 바르면 물이 날아가면서 막이 형성된다.", "변화가 생기면 표면에 기름막이 뜨거나 침전물이 생길 수 있다.", "보관 시 뚜껑을 꼭 닫고 직사광선을 피해야 한다."], "tip": "코팅제를 사용할 때는 희석 비율을 정확히 지켜야 합니다."}
 ---
 # 수성 코팅제, 물에 섞여 있는데도 병 안에서 굳지 않는 이유는?
