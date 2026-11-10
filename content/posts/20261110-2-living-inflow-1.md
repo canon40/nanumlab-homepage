@@ -5,7 +5,7 @@ category: "living"
 description: "혹시 겨울철 수도관이 얼어버리는 상황을 겪어본 적이 있으신가요? 동파예방은 겨울철 필수적인 관리 사항입니다. 특히 기온이 급격히 떨어질 때는 더욱 주의해야 하죠. 동파예방 을 위해서는 몇 가지 방법을 알아두는 것이 "
 image: ""
 canonical: "https://canon4041.blogspot.com/2026/11/blog-post_908.html"
-links: {"blogger": "https://canon4041.blogspot.com/2026/11/blog-post_908.html"}
+links: {"blogger": "https://canon4041.blogspot.com/2026/11/blog-post_908.html", "naver": "https://blog.naver.com/hymini1/224471885539"}
 summary: {"lead": "겨울철 수도관 동파 예방을 위한 필수 정보를 제공합니다. 동파를 막기 위해 알아야 할 방법 및 관리 요령을 통해 안전한 겨울을 보내세요.", "points": ["수도관에 보온재를 감싸는 것이 중요하다.", "수도꼭지를 살짝 열어두면 동파를 예방할 수 있다.", "보일러를 정기적으로 점검해야 한다.", "동파가 우려될 때 물을 빼는 것이 좋다.", "겨울철에는 미리 예방 조치를 취해야 한다."], "tip": "동파 예방을 위해 수도관 보온재를 꼭 사용하세요."}
 ---
 # 동파예방, 동파 예방 최선 방법 때 확인할 것
