@@ -4,8 +4,9 @@ date: "2026-11-09T15:09:06"
 category: "living"
 description: "욕실에서 샤워를 마치고 나면 벽이나 타일에 곰팡이가 생기는 경우가 많습니다. 많은 분들이 \"곰팡이는 제거제를 사용하면 된다\"고 생각하지만, 이 말은 반만 맞습니다. 곰팡이를 효과적으로 제거하려면 원인을 먼저 파악해야"
 image: ""
-canonical: ""
-pending: true
+canonical: "https://blog.naver.com/hymini1/224471645544"
+links: {"naver": "https://blog.naver.com/hymini1/224471645544", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "욕실에서 발생하는 곰팡이는 주로 습기 관리 부족으로 생깁니다. 곰팡이를 효과적으로 제거하고 예방하기 위해서는 적절한 관리와 청소가 필요합니다.", "points": ["욕실 곰팡이는 습기에서 비롯됩니다.", "곰팡이를 제거할 때는 적절한 세제를 사용해야 합니다.", "정기적인 청소가 곰팡이 예방에 효과적입니다.", "환기 관리는 곰팡이 발생을 줄이는 핵심입니다.", "샤워 후 물기를 잘 제거하는 것이 중요합니다."], "tip": "욕실 청소 후에는 반드시 환기를 통해 세제 잔여물을 제거하세요."}
 ---
 # 욕실 곰팡이, 초보가 자주 놓치는 점
 
