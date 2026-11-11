@@ -5,7 +5,7 @@ category: "living"
 description: "주방에서 요리를 하거나 설거지를 하다 보면 갑자기 불쾌한 냄새가 퍼지는 순간이 있습니다. 특히 주방 배수구에서 나는 악취는 정말 불편하죠. 이럴 때는 주방 배수구를 확인해보는 것이 중요합니다. 주방 배수구의 상태가 "
 image: "/blog-images/20261111-8-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224473363884"
-links: {"naver": "https://blog.naver.com/hymini1/224473363884", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post_294.html"}
+links: {"naver": "https://blog.naver.com/hymini1/224473363884", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post_294.html", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 summary: {"lead": "주방 배수구에서 나는 냄새는 주로 음식물 찌꺼기나 기름때가 원인입니다. 이 글에서는 배수구 악취를 예방하기 위한 청소 방법과 관리 요령을 소개합니다.", "points": ["주방 배수구는 정기적인 청소가 필요합니다.", "음식물 찌꺼기는 쉽게 부패하여 악취를 유발합니다.", "기름때가 쌓이면 고약한 냄새가 납니다.", "배수구 트랩의 물이 줄어들지 않도록 관리해야 합니다.", "배수구 덮개가 잘 밀착되었는지 점검해야 합니다."], "tip": "주방 배수구는 매주 뜨거운 물로 헹궈주면 악취 예방에 효과적입니다."}
 ---
 # 주방 배수구, 냄새가 심할 때 확인해야 할 점
