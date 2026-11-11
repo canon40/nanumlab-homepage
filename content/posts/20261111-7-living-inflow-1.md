@@ -5,7 +5,7 @@ category: "living"
 description: "욕실에서 물이 고이거나 악취가 나는 경험은 누구나 한 번쯤은 겪어보셨을 거예요. 이런 상황에 처하면 불편할 뿐만 아니라, 해결하는 데도 시간과 노력이 필요하죠. 많은 분들이 \"배수구 청소를 하면 된다\"고 생각하지만,"
 image: "/blog-images/20261111-7-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224473299441"
-links: {"naver": "https://blog.naver.com/hymini1/224473299441", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post_622.html", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/"}
+links: {"naver": "https://blog.naver.com/hymini1/224473299441", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post_622.html", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
 summary: {"lead": "이 글에서는 화장실 배수구의 막힘을 예방하기 위한 체크리스트와 관리 방법을 소개합니다. 배수구 상태 점검, 거름망 청소, 트랩 관리 등 실용적인 팁을 제공합니다.", "points": ["배수구 거름망을 정기적으로 청소해야 합니다.", "트랩 수위를 확인하고 물을 보충합니다.", "배수구 덮개가 제대로 닫혀 있는지 점검합니다.", "냄새가 나면 즉시 청소하고 원인을 파악합니다.", "정기적인 점검으로 막힘을 예방할 수 있습니다."], "tip": "정기적으로 배수구를 점검하여 막힘을 사전에 예방하세요."}
 ---
 # 화장실 배수구, 막힘을 예방하는 체크리스트는?
