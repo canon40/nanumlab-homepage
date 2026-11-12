@@ -147,6 +147,8 @@ header{position:sticky;top:0;z-index:20;background:var(--header);backdrop-filter
 .bar{height:4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .brand{display:flex;flex-direction:column;line-height:1.2}.brand b{font-size:1.1rem;font-weight:800}.brand span{font-size:.75rem;color:var(--muted-fg)}
 .bar nav{display:flex;align-items:center;gap:1.5rem;font-size:.95rem;font-weight:600}.bar nav a.t:hover{color:var(--primary)}
+.dd{position:relative}.dd-a:hover{color:var(--primary)}.dd-m{display:none;position:absolute;right:0;top:100%;min-width:11rem;padding:.4rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.dd-m a{display:block;padding:.45rem .7rem;border-radius:calc(var(--radius) - 2px);font-size:.9rem}.dd-m a:hover{background:var(--muted);color:var(--primary)}.dd:hover .dd-m,.dd:focus-within .dd-m{display:block}
+@media(hover:none){.dd:hover .dd-m{display:none}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:var(--radius);font-weight:800;padding:.85rem 1.6rem;font-size:1.05rem;border:2px solid transparent;transition:filter .15s,background .15s}
 .btn-p{background:var(--primary);color:#fff}.btn-p:hover{filter:brightness(1.08)}
 .btn-o{border-color:currentColor}.btn-o:hover{background:rgba(255,255,255,.08)}
@@ -226,7 +228,7 @@ ${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? ima
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><a class="t" href="/tools/">블로그 진단</a>${STORE_OPEN
+<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><span class="dd"><a class="dd-a" href="/tools/">블로그 진단</a><span class="dd-m"><a href="/tools/#analyze">블로그 분석</a><a href="/tools/#lowq">저품질 확인</a><a href="/tools/#rank">키워드 판정</a><a href="/tools/#missing">누락 진단</a><a href="/tools/#draft">원고 점검</a><a href="/tools/#ad">광고 최적화</a><a href="/tools/#dict">키워드 사전</a><a href="/tools/#dash">대시보드</a></span></span>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>

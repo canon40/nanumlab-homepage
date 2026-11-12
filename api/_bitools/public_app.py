@@ -16,13 +16,13 @@ from concurrent.futures import ThreadPoolExecutor
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
-from bi import analyze, draft, feeds, lowq, missing, naver_api, rank, searchad
+from bi import analyze, compare, draft, feeds, lowq, missing, naver_api, rank, searchad
 
 P = "/api/tools"
 app = FastAPI(title="블로그 진단실 (공개)", docs_url=None, redoc_url=None, openapi_url=None)
 
 # 하루 한도 (IP당). 검색 API 소모가 큰 기능일수록 낮게.
-LIMITS = {"analyze": 40, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "keywords": 20}
+LIMITS = {"analyze": 40, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "compare": 20, "keywords": 20}
 _USED: dict[tuple[str, str, str], int] = defaultdict(int)
 KINDS = {"naver", "tistory", "blogger"}
 
@@ -169,7 +169,21 @@ def api_draft(req: Request, body: DraftReq):
     if len(body.body) > 30000:
         raise HTTPException(400, "본문은 3만 자까지 점검할 수 있습니다.")
     limit(req, "draft")
-    return draft.check(body.title[:200], body.body, body.keyword[:40])
+    res = draft.check(body.title[:200], body.body, body.keyword[:40])
+    res["compare"], res["compare_note"] = None, ""
+    kw = body.keyword.strip()[:40]
+    if kw and naver_api.has_keys():
+        try:
+            limit(req, "compare")
+            top = naver_api.search(kw, kind="blog", display=10)
+            res["compare"] = compare.compare(body.title[:200], body.body, kw, top)
+        except HTTPException:
+            res["compare_note"] = "오늘 상위 글 비교 횟수를 다 썼습니다. 내일 다시 이용해 주세요."
+        except Exception:
+            res["compare_note"] = "상위 글을 가져오지 못했습니다. 잠시 뒤 다시 시도해 주세요."
+    elif kw:
+        res["compare_note"] = "상위 글 비교는 준비 중입니다."
+    return res
 
 
 class KeywordReq(BaseModel):
