@@ -5,7 +5,7 @@ category: "living"
 description: "욕실에서 물때가 자주 생기는 경험은 누구나 한번쯤은 겪어보셨을 것입니다. 특히 수성 코팅제를 사용했음에도 불구하고 물때가 생기는 이유는 무엇일까요? 수성 코팅제는 물과 잘 섞이지 않는 성분을 아주 작은 입자로 만들어"
 image: "/blog-images/20261112-2-living-inflow-1.jpg"
 canonical: "https://blog.naver.com/hymini1/224474779148"
-links: {"naver": "https://blog.naver.com/hymini1/224474779148", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+links: {"naver": "https://blog.naver.com/hymini1/224474779148", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041", "blogger": "https://canon4041.blogspot.com/2026/11/blog-post_12.html"}
 summary: {"lead": "욕실에서 자주 발생하는 물때의 원인과 수성 코팅제의 효과를 알아보세요. 적절한 관리 방법을 통해 물때 문제를 예방할 수 있습니다.", "points": ["수성 코팅제는 물과 잘 섞이지 않는 성분으로 만들어집니다.", "코팅제를 바른 후에는 최소 1시간 건조해야 효과가 있습니다.", "욕실의 물때는 주로 물의 경도와 세균에서 비롯됩니다.", "정기적인 세척과 물기 제거가 중요합니다.", "코팅제는 환경에 안전하게 사용할 수 있습니다."], "tip": "욕실을 자주 환기시켜 습기를 줄이는 것이 좋습니다."}
 ---
 # 수성 코팅제, 욕실 물때가 자주 생기는 이유는?
