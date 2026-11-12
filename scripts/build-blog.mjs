@@ -226,12 +226,12 @@ ${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? ima
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a>${STORE_OPEN
+<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><a class="t" href="/tools/">블로그 진단</a>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/tools/">블로그 진단</a><a href="/about/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 <script>if(document.documentElement.dataset.theme==='dark'){var b=document.querySelector('.theme');if(b)b.textContent='흰 화면'}</script>
 </body>

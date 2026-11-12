@@ -101,6 +101,7 @@ export default function App() {
             <a href="#tech-stack" className="hover:text-indigo-600 transition">기술스택</a>
             <a href="#portfolio" className="hover:text-indigo-600 transition">사업이력</a>
             <a href="/blog/" className="hover:text-indigo-600 transition">블로그</a>
+            <a href="/tools/" className="hover:text-indigo-600 transition">블로그 진단</a>
           </nav>
           <Button variant="default" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-md">
             비즈니스 문의
