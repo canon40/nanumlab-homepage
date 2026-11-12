@@ -4,8 +4,9 @@ date: "2026-11-12T17:34:40"
 category: "bike"
 description: "비 오는 날, 차량을 타고 이동하다 보면 유리막코팅제의 효과가 걱정될 때가 많습니다. \"비가 오면 유리막코팅제를 바르면 된다\"는 생각은 맞지만, 그 뒤에 따라야 할 관리가 필요하다는 점은 간과하기 쉬워요. 유리막코팅"
 image: ""
-canonical: ""
-pending: true
+canonical: "https://blog.naver.com/selfcoat/224474991249"
+links: {"naver": "https://blog.naver.com/selfcoat/224474991249", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+summary: {"lead": "유리막코팅제는 비 오는 날에도 효과를 유지하기 위해 관리가 필수적입니다. 비 후 점검 및 관리 요령을 통해 차량의 외관을 보호하고 코팅 효과를 극대화하는 방법을 알아보세요.", "points": ["비가 내린 후 물방울 상태를 점검해야 한다.", "얼룩이 남아 있다면 즉시 세차를 고려해야 한다.", "차량 외관의 반사광을 확인하여 코팅 상태를 점검한다.", "세차 후에는 물기를 빠르게 제거하는 것이 중요하다.", "정기적으로 코팅 상태를 점검하고 재도포를 고려해야 한다."], "tip": "비가 그친 후 즉시 코팅 상태를 점검하세요."}
 ---
 # 유리막코팅제, 비 후 관리 요령
 
