@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/tools.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{node_modules,dist,content,public,src,scripts,supabase}/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/tools/:path*", "destination": "/api/tools?__path=:path*" },
+    { "source": "/tools", "destination": "/tools/index.html" }
+  ]
+}
