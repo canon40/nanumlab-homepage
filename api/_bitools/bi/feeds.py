@@ -89,5 +89,23 @@ def fetch_posts(kind: str, name: str, timeout: int = 20) -> list[Post]:
     return parse_rss(r.text)
 
 
+UNSUPPORTED = ("지원하지 않는 주소입니다. 네이버 블로그(blog.naver.com/아이디), 티스토리(아이디.tistory.com), "
+               "블로거(아이디.blogspot.com) 주소나 블로그 ID를 넣어 주세요.")
+
+
+def split_target(text: str) -> tuple[str | None, str]:
+    """입력이 블로그 주소면 (종류, ID)로 바꾼다. 그냥 ID면 (None, ID). 다른 사이트 주소면 ValueError."""
+    t = (text or "").strip()
+    if not re.search(r"[./:]", t):
+        return None, t
+    from .rank import owner_key  # 순환 import 방지
+    url = t if re.match(r"https?://", t, re.I) else "https://" + t
+    key = owner_key(url)
+    if not key:
+        raise ValueError(UNSUPPORTED)
+    kind, name = key.split(":", 1)
+    return kind, name
+
+
 def find_channel(cid: str) -> dict | None:
     return next((c for c in CHANNELS if c["id"] == cid), None)

@@ -42,6 +42,11 @@ def limit(req: Request, kind: str) -> None:
 
 def _target(kind: str | None, name: str | None) -> tuple[str, str]:
     k, n = (kind or "naver").strip(), (name or "").strip()
+    try:  # 블로그 주소를 붙여 넣은 경우 종류·ID 자동 인식
+        auto_k, n = feeds.split_target(n)
+        k = auto_k or k
+    except ValueError as e:
+        raise HTTPException(400, str(e))
     if k not in KINDS:
         raise HTTPException(400, "블로그 종류는 네이버·티스토리·블로거만 됩니다.")
     try:
