@@ -23,7 +23,7 @@ P = "/api/tools"
 app = FastAPI(title="블로그 진단실 (공개)", docs_url=None, redoc_url=None, openapi_url=None)
 
 # 하루 한도 (IP당). 검색 API 소모가 큰 기능일수록 낮게.
-LIMITS = {"analyze": 40, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "compare": 20, "keywords": 20}
+LIMITS = {"write": 3, "suggest": 60, "analyze": 40, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "compare": 20, "keywords": 20}
 _USED: dict[tuple[str, str, str], int] = defaultdict(int)
 KINDS = {"naver", "tistory", "blogger"}
 
@@ -44,6 +44,11 @@ def _search(q: str, kind: str = "blog", display: int = 100) -> list[dict]:
         raise HTTPException(429, "오늘은 이용자가 많아 검색 기능을 모두 썼습니다. 내일 다시 이용해 주세요.")
     _SEARCH_USED[day] += 1
     return naver_api.search(q, kind=kind, display=display)
+
+
+# AI 글쓰기 서버 전체 하루 상한 (사장님 AI 사용료 보호, 2026-11-16)
+WRITE_DAY_CAP = int(os.getenv("PUBLIC_WRITE_DAY_CAP", "200"))
+_WRITE_USED: dict[str, int] = defaultdict(int)
 
 
 def limit(req: Request, kind: str) -> None:
@@ -223,3 +228,45 @@ def api_keywords(req: Request, body: KeywordReq):
         return {"hints": hints, "rows": searchad.keyword_tool(hints)}
     except Exception:
         raise HTTPException(502, "키워드 정보를 가져오지 못했습니다. 잠시 뒤 다시 시도해 주세요.")
+
+
+# ---------- 나눔랩 스튜디오 글쓰기 (2026-11-16 공개) ----------
+class WriteReq(BaseModel):
+    keyword: str
+    title: str = ""
+    notes: str = ""
+
+
+@app.post(P + "/write")
+def api_write(req: Request, body: WriteReq):
+    from bi import writer
+
+    kw = body.keyword.strip()[:40]
+    if not kw:
+        raise HTTPException(400, "노릴 키워드를 넣어 주세요.")
+    if not writer._key():
+        raise HTTPException(428, "AI 글쓰기는 준비 중입니다. 원고 점검과 블로그 진단은 지금 쓸 수 있습니다.")
+    day = time.strftime("%Y-%m-%d")
+    if _WRITE_USED[day] >= WRITE_DAY_CAP:
+        raise HTTPException(429, "오늘은 이용자가 많아 AI 글쓰기를 모두 썼습니다. 내일 다시 이용해 주세요.")
+    limit(req, "write")
+    _WRITE_USED[day] += 1
+    try:
+        return writer.write(kw, body.title.strip()[:200], body.notes.strip()[:500])
+    except Exception:
+        # 실패한 시도는 하루 횟수에서 빼 준다
+        _WRITE_USED[day] -= 1
+        _USED[(_ip(req), "write", day)] -= 1
+        raise HTTPException(502, "AI가 지금 답하지 못했습니다. 잠시 뒤 다시 시도해 주세요.")
+
+
+class SuggestReq(BaseModel):
+    q: str
+
+
+@app.post(P + "/suggest")
+def api_suggest(req: Request, body: SuggestReq):
+    from bi import naver_suggest
+
+    limit(req, "suggest")
+    return {"q": body.q.strip()[:40], "items": naver_suggest.suggest(body.q)}

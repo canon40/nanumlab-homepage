@@ -228,12 +228,12 @@ ${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? ima
 </head>
 <body>
 <header><div class="wrap bar"><a class="brand" href="/"><b>나눔랩 코팅</b><span>코팅제 · 리빙코팅제 이야기</span></a>
-<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><span class="dd"><a class="dd-a" href="/tools/">블로그 진단</a><span class="dd-m"><a href="/tools/#analyze">블로그 분석</a><a href="/tools/#lowq">저품질 확인</a><a href="/tools/#rank">키워드 판정</a><a href="/tools/#missing">누락 진단</a><a href="/tools/#draft">원고 점검</a><a href="/tools/#ad">광고 최적화</a><a href="/tools/#dict">키워드 사전</a><a href="/tools/#dash">대시보드</a></span></span>${STORE_OPEN
+<nav><button class="theme" type="button" onclick="(function(b){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}b.textContent=n==='dark'?'흰 화면':'검정 화면'})(this)">검정 화면</button><a class="t" href="/#coating">코팅제</a><a class="t" href="/#living">리빙코팅제</a><span class="dd"><a class="dd-a" href="/tools/">나눔랩 스튜디오</a><span class="dd-m"><a href="/tools/#studio">글쓰기</a><a href="/tools/#analyze">블로그 분석</a><a href="/tools/#lowq">저품질 확인</a><a href="/tools/#rank">키워드 판정</a><a href="/tools/#missing">누락 진단</a><a href="/tools/#draft">원고 점검</a><a href="/tools/#ad">광고 최적화</a><a href="/tools/#dict">키워드 사전</a><a href="/tools/#dash">대시보드</a></span></span>${STORE_OPEN
     ? `<a class="btn btn-p btn-sm" href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>`
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/tools/">블로그 진단</a><a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/tools/">나눔랩 스튜디오</a><a href="/about/">회사 소개</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 <script>if(document.documentElement.dataset.theme==='dark'){var b=document.querySelector('.theme');if(b)b.textContent='흰 화면'}</script>
 </body>
