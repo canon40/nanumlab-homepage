@@ -9,6 +9,14 @@ from .naver_api import ENGINE
 # 표시광고법상 문제 될 수 있는 표현 (최상급·단정·보장)
 CLAIM_WORDS = ["최고", "최상", "최초", "1위", "일등", "넘버원", "100%", "완벽", "보장", "영구", "무조건",
                "부작용 없", "부작용이 없", "즉시 효과", "기적", "유일", "특효", "절대"]
+# 다른 낱말 안에 든 경우는 빼기: 주기적·정기적·일기적 의 '기적', 최고령 등은 그대로 둔다 (2026-11-14 오탐)
+_INSIDE = {"기적": re.compile(r"(?<![가-힣])기적")}
+
+
+def claims(text: str) -> list[str]:
+    return [w for w in CLAIM_WORDS if (_INSIDE[w].search(text) if w in _INSIDE else w in text)]
+
+
 _HEAD = re.compile(r"^\s*(#{1,4}\s|■|▶|\[\s*\d|\d+[.)]\s|<h[2-4])", re.M)
 _IMG = re.compile(r"<img\b|!\[|\[사진\]|\[이미지\]", re.I)
 
@@ -66,7 +74,7 @@ def check(title: str, body: str, keyword: str = "") -> dict:
     add("images", "이미지 표시", "ok" if ic >= 3 else "warn",
         f"{ic}개 확인 ([사진], <img>, ![] 표시를 셉니다. 붙여 넣을 때 사진이 빠지면 0개로 보일 수 있습니다)", 10)
 
-    found = [w for w in CLAIM_WORDS if w in title + " " + plain]
+    found = claims(title + " " + plain)
     add("claims", "광고 표현", "bad" if found else "ok",
         ("고칠 표현: " + ", ".join(found) + " — 근거 없는 최상급·보장 표현은 표시광고법 문제가 될 수 있습니다.")
         if found else "최상급·보장 표현이 없습니다.", 15)

@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import os
 import time
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -30,6 +31,19 @@ KINDS = {"naver", "tistory", "blogger"}
 def _ip(req: Request) -> str:
     fwd = req.headers.get("x-forwarded-for", "")
     return (fwd.split(",")[0].strip() or (req.client.host if req.client else "")) or "?"
+
+
+# 2026-11-16 누구나 쓰게 공개: 사장님 네이버 검색 API 하루 25,000회를 지키려고 서버 전체 하루 상한을 둔다
+SEARCH_DAY_CAP = int(os.getenv("PUBLIC_SEARCH_DAY_CAP", "15000"))
+_SEARCH_USED: dict[str, int] = defaultdict(int)
+
+
+def _search(q: str, kind: str = "blog", display: int = 100) -> list[dict]:
+    day = time.strftime("%Y-%m-%d")
+    if _SEARCH_USED[day] >= SEARCH_DAY_CAP:
+        raise HTTPException(429, "오늘은 이용자가 많아 검색 기능을 모두 썼습니다. 내일 다시 이용해 주세요.")
+    _SEARCH_USED[day] += 1
+    return naver_api.search(q, kind=kind, display=display)
 
 
 def limit(req: Request, kind: str) -> None:
@@ -102,7 +116,9 @@ def api_rank(req: Request, body: RankReq):
         raise HTTPException(428, "지금은 순위 확인을 쓸 수 없습니다 (서버 설정 준비 중).")
     limit(req, "rank")
     try:
-        items = naver_api.search(kw, kind="blog" if k == "naver" else "webkr", display=100)
+        items = _search(kw, kind="blog" if k == "naver" else "webkr", display=100)
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(502, "네이버 검색 결과를 가져오지 못했습니다. 잠시 뒤 다시 시도해 주세요.")
     my_key = f"{k}:{n}"
@@ -141,7 +157,7 @@ def _missing(req: Request, body: MissingReq, kind: str) -> dict:
     limit(req, kind)
     posts = _posts(k, n)[: max(1, min(body.count, 15))]
     api_kind = "blog" if k == "naver" else "webkr"
-    rows = missing.check(posts, lambda q: naver_api.search(q, kind=api_kind, display=30))
+    rows = missing.check(posts, lambda q: _search(q, kind=api_kind, display=100))  # 30위 밖도 노출 (2026-11-16)
     for r in rows:  # 내부 오류 문구는 숨긴다
         if r["status"] == "unknown":
             r["note"] = "검색 결과를 가져오지 못했습니다."
@@ -158,7 +174,7 @@ def api_missing(req: Request, body: MissingReq):
 def api_lowq(req: Request, body: MissingReq):
     body.count = 15
     res = _missing(req, body, "lowq")
-    return {**res, "lowq": lowq.summarize(res["rows"])}
+    return {**res, "lowq": lowq.summarize(res["rows"], str(res.get("target", "naver")).split(":", 1)[0])}
 
 
 class DraftReq(BaseModel):
@@ -180,7 +196,7 @@ def api_draft(req: Request, body: DraftReq):
     if kw and naver_api.has_keys():
         try:
             limit(req, "compare")
-            top = naver_api.search(kw, kind="blog", display=10)
+            top = _search(kw, kind="blog", display=10)
             res["compare"] = compare.compare(body.title[:200], body.body, kw, top)
         except HTTPException:
             res["compare_note"] = "오늘 상위 글 비교 횟수를 다 썼습니다. 내일 다시 이용해 주세요."

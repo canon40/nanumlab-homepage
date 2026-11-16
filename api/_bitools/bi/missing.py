@@ -20,7 +20,8 @@ def check(posts: list[Post], search: Callable[[str], list[dict]]) -> list[dict]:
             continue
         hit = next((i for i, it in enumerate(items, 1) if pid and post_id(it.get("link", "")) == pid), None)
         if hit:
-            row.update(status="shown", rank=hit, note=f"제목 검색 {hit}위에 보입니다.")
+            row.update(status="shown", rank=hit, note=f"제목 검색 {hit}위에 보입니다." if hit <= 30 else
+                       f"제목 검색 {hit}위 — 빠지진 않았지만 뒤쪽입니다. 제목을 더 구체적으로 쓰면 올라갈 수 있습니다.")
         else:
             row.update(status="missing", note=f"제목 검색 상위 {len(items)}개 안에 이 글이 없습니다.")
         out.append(row)

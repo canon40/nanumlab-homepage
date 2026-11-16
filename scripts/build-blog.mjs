@@ -45,7 +45,7 @@ const ORIGIN = [
 ];
 
 // 글 분류(니치) → 사이트 분류. 자동차·바이크 글은 '코팅제', 생활 글은 '리빙코팅제'.
-const GROUP_OF = { car: 'coating', bike: 'coating', living: 'living' };
+const GROUP_OF = { car: 'coating', bike: 'coating', living: 'living', tools: 'etc' }; // tools: 블로그 진단 안내 글 (2026-11-16)
 const GROUPS = { coating: '코팅제', living: '리빙코팅제' };
 // 전체 글 목록(content/external-index.json)에만 있는 분류: 코팅·생활과 무관한 예전 글
 const LIST_GROUPS = { ...GROUPS, etc: '기타 글' };
@@ -260,6 +260,7 @@ function productCard(key, count) {
 
 function related(group) {
   const p = PRODUCTS[group];
+  if (!p) return ''; // 제품과 무관한 글(블로그 진단 안내 등)은 제품 상자를 붙이지 않는다
   const acts = STORE_OPEN
     ? p.links.map(([label, url]) => `<a class="btn btn-p btn-sm" href="${url}${UTM}" target="_blank" rel="noopener">${label}</a>`).join('')
     : `<a class="btn btn-p btn-sm" href="/#${group}">${GROUPS[group]} 글 더 보기</a>`;
@@ -273,7 +274,7 @@ function related(group) {
 function card(p, cls = '') {
   return `<a class="card${cls}" href="/blog/${p.slug}/" data-cat="${p.group}" data-src="${srcs(p.links).join(' ')}">
 ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" />` : ''}
-<div class="in"><div class="meta"><span class="cat">${GROUPS[p.group]}</span>${fmtDate(p.date)}</div>
+<div class="in"><div class="meta"><span class="cat">${LIST_GROUPS[p.group] || ""}</span>${fmtDate(p.date)}</div>
 <h2>${esc(p.title)}</h2><p>${esc(p.description)}</p>${chips(p.links)}</div></a>`;
 }
 
@@ -408,12 +409,13 @@ fetch('/blog/all.json').then(function(r){return r.json()}).then(function(d){all=
   for (const p of posts) {
     const dir = path.join(blogDir, p.slug);
     fs.mkdirSync(dir, { recursive: true });
-    const head = `<div class="wrap"><article><div class="meta"><a class="cat" href="/#${p.group}">${GROUPS[p.group]}</a>${fmtDate(p.date)}</div>
+    const head = `<div class="wrap"><article><div class="meta"><a class="cat" href="/#${p.group}">${LIST_GROUPS[p.group] || ""}</a>${fmtDate(p.date)}</div>
 <h1>${esc(p.title)}</h1>${p.image ? `<img class="hero-img" src="${esc(p.image)}" alt="" />` : ''}`;
-    const tail = `${related(p.group)}${where(p.links)}<a class="back" href="/#${p.group}">← ${GROUPS[p.group]} 글 목록</a></article></div>`;
+    const tail = `${related(p.group)}${where(p.links)}<a class="back" href="/#${p.group}">← ${p.group === "etc" ? "기타" : LIST_GROUPS[p.group] || ""} 글 목록</a></article></div>`;
     const o = origin(p);
     const isSummary = Boolean(p.summary && o && !p.pending);
-    p.indexUrl = isSummary ? `${SITE}/blog/${p.slug}/` : ''; // 사이트맵·RSS 에는 요약 페이지만
+    // 사이트맵·RSS 에는 요약 페이지와 홈페이지에만 있는 원본 글(블로그 진단 안내, 2026-11-16)만
+    p.indexUrl = isSummary || (p.category === 'tools' && !p.pending) ? `${SITE}/blog/${p.slug}/` : '';
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       layout({
@@ -435,7 +437,7 @@ fetch('/blog/all.json').then(function(r){return r.json()}).then(function(d){all=
     .slice(0, 50)
     .map(
       (p) => `<item><title>${esc(p.title)}</title><link>${p.indexUrl}</link><guid>${p.indexUrl}</guid>
-<description>${esc(p.description)}</description><category>${GROUPS[p.group]}</category><pubDate>${new Date(p.date).toUTCString()}</pubDate></item>`,
+<description>${esc(p.description)}</description><category>${LIST_GROUPS[p.group] || ""}</category><pubDate>${new Date(p.date).toUTCString()}</pubDate></item>`,
     )
     .join('\n');
   fs.writeFileSync(
