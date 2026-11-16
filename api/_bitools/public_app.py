@@ -23,7 +23,7 @@ P = "/api/tools"
 app = FastAPI(title="블로그 진단실 (공개)", docs_url=None, redoc_url=None, openapi_url=None)
 
 # 하루 한도 (IP당). 검색 API 소모가 큰 기능일수록 낮게.
-LIMITS = {"write": 3, "suggest": 60, "analyze": 40, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "compare": 20, "keywords": 20}
+LIMITS = {"write": 3, "suggest": 60, "analyze": 80, "rank": 15, "missing": 5, "lowq": 5, "draft": 60, "compare": 20, "keywords": 20}
 _USED: dict[tuple[str, str, str], int] = defaultdict(int)
 KINDS = {"naver", "tistory", "blogger"}
 
