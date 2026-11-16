@@ -61,6 +61,8 @@ def limit(req: Request, kind: str) -> None:
 
 def _target(kind: str | None, name: str | None) -> tuple[str, str]:
     k, n = (kind or "naver").strip(), (name or "").strip()
+    if not n:
+        raise HTTPException(400, "블로그 ID나 블로그 주소를 넣어 주세요. 예: myblog 또는 blog.naver.com/myblog")
     try:  # 블로그 주소를 붙여 넣은 경우 종류·ID 자동 인식
         auto_k, n = feeds.split_target(n)
         k = auto_k or k
