@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import os
+import re
 import time
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -63,6 +64,8 @@ def _target(kind: str | None, name: str | None) -> tuple[str, str]:
     k, n = (kind or "naver").strip(), (name or "").strip()
     if not n:
         raise HTTPException(400, "블로그 ID나 블로그 주소를 넣어 주세요. 예: myblog 또는 blog.naver.com/myblog")
+    if re.search(r"[가-힣]", n) and "." not in n:
+        raise HTTPException(400, "블로그 ID는 영문입니다(예: hymini1). 나눔랩 블로그는 위 '내 채널' 칸에서 골라 주세요.")
     try:  # 블로그 주소를 붙여 넣은 경우 종류·ID 자동 인식
         auto_k, n = feeds.split_target(n)
         k = auto_k or k
