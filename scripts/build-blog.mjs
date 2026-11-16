@@ -15,6 +15,10 @@ const POSTS = path.join(ROOT, 'content', 'posts');
 const DIST = path.join(ROOT, 'dist');
 const SITE = 'https://nanumlab.store';
 const STORE = 'https://smartstore.naver.com/nanumlab';
+// 구글 애드센스 (2026-11-16): 사이트 확인 코드 + ads.txt. 게시자 번호는 canon4040 계정(티스토리·permacoatkorea 와 같은 번호).
+// 다른 계정으로 신청했다면 이 줄만 바꾸면 된다.
+const ADSENSE_PUB = 'pub-8718050413851359';
+const ADSENSE_TAG = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUB}" crossorigin="anonymous"></script>`;
 // 스마트스토어가 열리지 않는 동안(2026-11-08~) 스토어 버튼과 본문 속 스토어 링크 줄을 모두 숨긴다.
 // 스토어가 다시 열리면 true 로 바꾸면 된다 (또는 빌드 환경변수 STORE_OPEN=1).
 // 2026-11-09 사용자: 스토어 다시 열림 → 기본 켬. 다시 닫히면 STORE_OPEN=0 으로 빌드.
@@ -121,6 +125,7 @@ function parse(file) {
     image: meta.image || '',
     canonical: meta.canonical || `${SITE}/blog/${slug}/`,
     pending: meta.pending === true, // 아직 네이버 등에 발행 전: 보여 주되 검색 색인은 막는다
+    original: meta.original === true, // 홈페이지에만 쓴 원본 글 → 사이트맵·RSS 에 넣는다
     links: meta.links && typeof meta.links === 'object' ? meta.links : {},
     html: marked.parse(body),
     // 요약 {lead, points[], tip} — 발행된 글이면 요약 페이지로 만든다
@@ -217,6 +222,7 @@ function layout({ title, description, canonical, image, body, on, noindex = fals
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="alternate" type="application/rss+xml" title="나눔랩 코팅" href="${SITE}/rss.xml" />${VERIFY_META}
+${ADSENSE_TAG}
 <meta property="og:type" content="${on === 'post' ? 'article' : 'website'}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
@@ -233,7 +239,7 @@ ${image ? `<meta property="og:image" content="${esc(/^https?:/.test(image) ? ima
     : '<a class="btn btn-p btn-sm" href="/#products">제품 소개</a>'}</nav></div></header>
 <main>${body}</main>
 <footer><div class="wrap"><div><b>주식회사 나눔랩</b> · 듀라코트 퍼마코트 · 듀라코트 리빙코트</div>
-<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/tools/">나눔랩 스튜디오</a><a href="/about/">회사 소개</a></nav></div>
+<nav>${STORE_OPEN ? `<a href="${STORE}" target="_blank" rel="noopener">스마트스토어</a>` : ''}<a href="/tools/">나눔랩 스튜디오</a><a href="/about/">회사 소개</a><a href="/contact/">문의</a><a href="/privacy/">개인정보처리방침</a></nav></div>
 <div class="wrap" style="margin-top:.75rem">&copy; ${new Date().getFullYear()} NANUM LAB Co., Ltd.</div></footer>
 <script>if(document.documentElement.dataset.theme==='dark'){var b=document.querySelector('.theme');if(b)b.textContent='흰 화면'}</script>
 </body>
@@ -307,6 +313,31 @@ ${s.tip ? `<p class="tip"><b>한 줄 팁</b> ${esc(s.tip)}</p>` : ''}
 <a class="btn btn-p orig" href="${esc(o.url)}" target="_blank" rel="noopener">원문 전체 보기 · ${o.label}</a>
 <small class="orig-note">자세한 순서와 사진은 원문에 있습니다.</small></div>`;
 }
+
+const TRUST_PAGES = [
+  ['contact', '문의', '나눔랩 코팅 블로그와 제품(듀라코트 퍼마코트·리빙코트)에 대한 문의 방법을 안내합니다.', `
+<p>나눔랩 코팅 블로그와 제품에 대해 궁금한 점이 있으면 아래 방법으로 문의해 주세요.</p>
+<h2>제품 문의</h2>
+<p>듀라코트 퍼마코트(자동차·바이크 코팅제)와 듀라코트 리빙코트(리빙코팅제)의 사용 방법, 용량, 배송은 <a href="${STORE}" target="_blank" rel="noopener">나눔랩 스마트스토어</a>의 상품 문의(Q&amp;A)로 남겨 주시면 확인 후 답변드립니다.</p>
+<h2>블로그 글·나눔랩 스튜디오 문의</h2>
+<p>블로그 글 내용의 오류 제보, 나눔랩 스튜디오(무료 블로그 글쓰기·진단 도구) 사용 중 불편한 점도 스마트스토어 문의로 알려 주세요. 글 내용은 확인 후 바로잡습니다.</p>
+<h2>답변 시간</h2>
+<p>평일 기준으로 순서대로 답변드립니다. 주말·공휴일에 남긴 문의는 다음 평일에 확인합니다.</p>`],
+  ['privacy', '개인정보처리방침', '나눔랩 코팅(nanumlab.store)이 방문자 정보를 어떻게 다루는지 안내합니다.', `
+<p>주식회사 나눔랩(이하 '회사')은 nanumlab.store(이하 '사이트')를 운영하며 방문자의 개인정보를 소중히 다룹니다. 이 방침은 사이트에서 어떤 정보를 어떻게 다루는지 설명합니다.</p>
+<h2>1. 수집하는 개인정보</h2>
+<p>사이트는 회원가입·로그인 기능이 없으며, 이름·연락처 같은 개인정보를 직접 받지 않습니다.</p>
+<h2>2. 나눔랩 스튜디오에 입력한 내용</h2>
+<p>나눔랩 스튜디오(블로그 글쓰기·진단 도구)에 넣은 블로그 주소, 키워드, 원고는 결과를 보여 주는 데에만 쓰고 서버에 저장하지 않습니다. '내 채널'처럼 다시 쓰기 위한 설정은 방문자 브라우저(localStorage)에만 저장되며, 브라우저에서 언제든 지울 수 있습니다. 같은 사람이 너무 많이 쓰지 않도록 하루 사용 횟수를 세는 데 접속 IP를 잠시 쓰며, 이 기록은 오래 보관하지 않습니다.</p>
+<h2>3. 쿠키와 광고</h2>
+<p>사이트는 Google 애드센스 광고를 게재할 수 있습니다. Google을 포함한 제3자 광고 사업자는 쿠키를 사용해 방문자가 이 사이트와 다른 사이트를 방문한 기록을 바탕으로 광고를 보여 줄 수 있습니다. Google의 광고 쿠키 사용 방식은 <a href="https://policies.google.com/technologies/ads?hl=ko" target="_blank" rel="noopener">Google 광고 정책</a>에서 확인할 수 있고, <a href="https://adssettings.google.com/" target="_blank" rel="noopener">광고 설정</a>에서 맞춤 광고를 끌 수 있습니다. 브라우저 설정에서 쿠키 저장을 거부할 수도 있습니다.</p>
+<h2>4. 외부 링크</h2>
+<p>사이트의 글에는 네이버 블로그, 티스토리, 블로거, 스마트스토어 등 외부 사이트 링크가 있습니다. 외부 사이트의 개인정보 처리는 각 사이트의 방침을 따릅니다.</p>
+<h2>5. 문의</h2>
+<p>개인정보와 관련한 문의는 <a href="/contact/">문의</a> 페이지의 방법으로 남겨 주세요.</p>
+<h2>6. 방침의 변경</h2>
+<p>이 방침이 바뀌면 이 페이지에 바로 반영합니다. 시행일: 2026년 11월 16일</p>`],
+];
 
 function main() {
   if (!fs.existsSync(DIST)) throw new Error('dist 가 없습니다. vite build 를 먼저 하세요.');
@@ -402,7 +433,19 @@ fetch('/blog/all.json').then(function(r){return r.json()}).then(function(d){all=
   const about = fs.readFileSync(rootIndex, 'utf8')
     .replaceAll(`href="${SITE}/"`, `href="${SITE}/about/"`)
     .replaceAll(`content="${SITE}/"`, `content="${SITE}/about/"`);
-  fs.writeFileSync(path.join(aboutDir, 'index.html'), about);
+  fs.writeFileSync(path.join(aboutDir, 'index.html'), about.includes('adsbygoogle') ? about : about.replace('</head>', `${ADSENSE_TAG}
+</head>`));
+
+  // 문의·개인정보처리방침 (애드센스 심사에 필요한 신뢰 페이지, 2026-11-16)
+  for (const [slug, title, desc, html] of TRUST_PAGES) {
+    const dir = path.join(DIST, slug);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), layout({ title: `${title} | 나눔랩 코팅`, description: desc, canonical: `${SITE}/${slug}/`,
+      body: `<div class="wrap"><article><h1>${title}</h1><div class="body">${html}</div></article></div>` }));
+  }
+  // ads.txt
+  fs.writeFileSync(path.join(DIST, 'ads.txt'), `google.com, ${ADSENSE_PUB}, DIRECT, f08c47fec0942fa0
+`);
   fs.writeFileSync(rootIndex, home);
   fs.writeFileSync(path.join(blogDir, 'index.html'), home);
 
@@ -415,7 +458,7 @@ fetch('/blog/all.json').then(function(r){return r.json()}).then(function(d){all=
     const o = origin(p);
     const isSummary = Boolean(p.summary && o && !p.pending);
     // 사이트맵·RSS 에는 요약 페이지와 홈페이지에만 있는 원본 글(블로그 진단 안내, 2026-11-16)만
-    p.indexUrl = isSummary || (p.category === 'tools' && !p.pending) ? `${SITE}/blog/${p.slug}/` : '';
+    p.indexUrl = isSummary || ((p.category === 'tools' || p.original) && !p.pending) ? `${SITE}/blog/${p.slug}/` : ''; // original: 홈페이지에만 있는 직접 쓴 글 (2026-11-16)
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       layout({
@@ -465,7 +508,7 @@ ${rssItems}
   // sitemap: public/sitemap.xml 에 주소를 더한다 (원본이 다른 곳인 글·발행 전 글은 뺀다)
   const smPath = path.join(DIST, 'sitemap.xml');
   if (fs.existsSync(smPath)) {
-    const urls = [`${SITE}/about/`, ...indexed.map((p) => p.indexUrl)];
+    const urls = [`${SITE}/about/`, `${SITE}/contact/`, `${SITE}/privacy/`, ...indexed.map((p) => p.indexUrl)];
     const add = urls.map((u) => `  <url>\n    <loc>${u}</loc>\n    <changefreq>weekly</changefreq>\n  </url>`).join('\n');
     const sm = fs.readFileSync(smPath, 'utf8').replace('</urlset>', `${add}\n</urlset>`);
     fs.writeFileSync(smPath, sm);
