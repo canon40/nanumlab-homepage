@@ -5,7 +5,7 @@ category: "bike"
 description: "한눈에 보기 유리막코팅제 시공 후 생기는 얼룩은 버핑 타이밍이 늦어지며 성분이 불균일하게 굳기 때문입니다. 도장면의 온도와 습도에 따라 굳는 속도가 다르니 얇게 펴 바르고 즉시 닦아내는 것이 기준입니다. 시공 전 도"
 image: "/blog-images/20261119-bike-inflow-1.jpg"
 canonical: "https://blog.naver.com/selfcoat/224483105216"
-links: {"naver": "https://blog.naver.com/selfcoat/224483105216", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041"}
+links: {"naver": "https://blog.naver.com/selfcoat/224483105216", "facebook": "https://www.facebook.com/1235105509692665", "instagram": "https://www.instagram.com/canon_4041/", "threads": "https://www.threads.com/@canon_4041", "tistory": "https://hymini1.tistory.com/528"}
 summary: {"lead": "유리막코팅제 시공 후 발생하는 얼룩은 성분이 균일하게 펴지지 않고 빠르게 굳기 때문에 생깁니다. 성공적인 코팅을 위해 도장면 상태에 따른 적절한 버핑 타이밍과 도포 요령을 상세히 정리했습니다.", "points": ["얼룩은 도장면 온도와 습도로 인해 코팅 성분이 닦아내기 전 굳어버려 발생합니다.", "코팅제는 두껍게 바르는 것보다 얇게 펴 바르는 것이 얼룩 예방에 훨씬 유리합니다.", "전체 면적을 한 번에 시공하지 말고 한 판씩 나누어 작업하는 것이 좋습니다.", "도포 후 약 1분 이내에 깨끗한 타월로 가볍게 닦아내는 과정을 유지하십시오.", "물방울이 동그랗게 맺히는지 확인하여 정상적인 코팅 안착 여부를 판단합니다.", "시공 후 피막이 충분히 형성될 때까지 최소 수 시간은 물이 닿지 않게 하십시오."], "tip": "도장면의 열기를 완전히 식힌 상태에서 한 판씩 나누어 얇게 바르고 즉시 닦아내면 얼룩 없이 깔끔한 결과물을 얻을 수 있습니다."}
 ---
 # 유리막코팅제 얼룩 없이 바르려면 버핑 타이밍 1분만 기억하세요
